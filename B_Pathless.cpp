@@ -1,21 +1,30 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-
-void solve(){
-    int n, k, tmp;
-    cin >> n >> k;
-    vector<int> a(3);
-    for(int i=0; i<n; i++){cin >> tmp; a[tmp]++;}
-    if(k == a[1] + 2*a[2] || k >= a[1] + 2*a[2] + 2){cout << -1 << '\n'; return;}
-    for(int i=0; i<a[0]; i++) 
-    cout << 0 << ' ';
-    for(int i=0; i<a[2]; i++) cout << 2 << ' ';
-    for(int i=0; i<a[1]; i++) cout << 1 << ' ';
-    cout << '\n';
-}
-
 int main(){
     int t;
     cin >> t;
-    while(t--) solve();
+    while(t--){
+    int n,s;
+    cin >> n>>s;
+    int sum=0;
+    int freq[3] = {0,0,0};
+    for(int i = 0; i < n; i++){
+        int x;
+        cin >> x;
+        sum += x;
+        freq[x]++;
+    }
+    if(sum>s|| s-sum==1){
+        while(freq[0]--)cout << "0 " ;
+        while(freq[2]--)cout << "2 " ;
+        while(freq[1]--)cout << "1 " ;
+        cout << "\n";
+    }
+    else cout << "-1\n";
 }
+    return 0;
+}
+//observations:
+//if s < sum of a--any works
+//if s == sum of a--impossible
+// if s>=sum and 0 followed by 1 .. alice always wins(avoid 0 and 1 together)
