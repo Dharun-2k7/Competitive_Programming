@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -14,3 +15,13 @@ int main() {
     }
     cout << best << endl;
 }
+=======
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n , m; cin>>n>>m;
+    while(n--)
+}
+>>>>>>> b9054e93db9d6de379b4b331ce29a691516046cc
