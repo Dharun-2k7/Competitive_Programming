@@ -1,0 +1,1 @@
+{"name":"Local: YET_ANOTHER_GCD_PBLM","url":"c:\\University\\CODEFORCES\\YET_ANOTHER_GCD_PBLM.cpp","tests":[{"id":1757733944835,"input":"4\n5 10\n4 13\n2 1 \n6 7","output":"2 3 5 7 11\n-1\n2 3 \n2 3 3 5 6 6"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\University\\CODEFORCES\\YET_ANOTHER_GCD_PBLM.cpp","group":"local","local":true}
