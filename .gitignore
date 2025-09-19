@@ -1,0 +1,10 @@
+# Ignore CPH problem metadata
+.cph/
+
+# Ignore VSCode configs
+.vscode/
+
+# Ignore compiled files
+*.out
+*.exe
+*.class
