@@ -21,6 +21,6 @@ int main(){
             int r = c;
             ans += min(k, r);
         }
-        cout << ans << "\n";
+        cout << ans << endl;
     }
 }

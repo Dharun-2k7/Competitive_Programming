@@ -8,6 +8,7 @@ int main(){
         string s; cin >> s;
         ll c = 0;
         for(char ch : s) c += (ch == '8');
+        
         ll d = n - c;
         ll ax = llabs(x), ay = llabs(y);
         ll need = max(0ll, ax - c) + max(0ll, ay - c);

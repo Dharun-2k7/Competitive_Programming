@@ -1,8 +1,6 @@
 #include<bits/stdc++.h>
 #include <bits/stdc++.h>
 using namespace std;
-
-#define nl "\n"
 #define ll long long
 
 int main() {
@@ -32,16 +30,14 @@ int main() {
             mx[i] += mx[i - 1];
         }
 
-        // fill the result array
         for (ll i = 1; i <= n; i++) {
             if (mn[i] > 0 && mx[i] > 0) a[i] = k + 1;
             else if (mx[i] > 0) a[i] = i % k;
             else a[i] = k;
         }
 
-        // print the result
         for (ll i = 1; i <= n; i++) cout << a[i] << ' ';
-        cout << nl;
+        cout << endl;
     }
 
     return 0;
