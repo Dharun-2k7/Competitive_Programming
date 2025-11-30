@@ -10,6 +10,6 @@ int main(){
 		res += (s[i] != s[i + 1]);
 		ex |= (s[i] == '0' && s[i + 1] == '1');
 	}
-	cout << res - ex << '\n';
+	cout << res - ex << endl;
     }
 }

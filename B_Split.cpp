@@ -22,9 +22,8 @@ int main(){
         if(x < 0) x = 0;
 
         int ans = m1 + 2*x;
-        cout << ans << "\n";
+        cout << ans << endl;
     }
-    return 0;
 }
 
 
