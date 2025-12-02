@@ -26,6 +26,6 @@ int main() {
                 break;
             }
         }
-        cout << x << endl;
+        cout << x << "\n";
     }
 }
