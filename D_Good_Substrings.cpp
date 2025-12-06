@@ -1,34 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef unsigned long long ull;
+using ll = long long;
 
+const ll b = 1315423911;
+const ll m1 = 1000000007;
+const ll m2 = 1000000009;
 int main() {
-    string s;  cin >> s;
+    string s; cin >> s;
+    string g; cin >> g;
+    int k; cin >> k;
+
     int n = s.size();
-    string good; 
-    cin >> good;
+    unordered_set<ll> st;  
 
-    int k; 
-    cin >> k;
-
-    vector<int> is_good(26);
-    for (int i = 0; i < 26; i++) 
-        is_good[i] = good[i] - '0';
-
-    unordered_set<ull> st;   
-    st.reserve(n * n);
-    st.max_load_factor(0.7);
-
-    const ull B = 1315423911ULL;
     for (int i = 0; i < n; i++) {
         int bad = 0;
-        ull h = 0;
+        ll h1 = 0, h2 = 0;
+
         for (int j = i; j < n; j++) {
-            int c = s[j] - 'a';
-            if (!is_good[c]) bad++;
+            if (g[s[j] - 'a'] == '0') bad++;
+
             if (bad > k) break;
 
-            h = h * B + (c + 1);st.insert(h);
+            h1 = (h1 * 131 + s[j]) % m1;
+            h2 = (h2 * 137 + s[j]) % m2;
+
+            ll h = (h1 << 32) ^ h2; 
+            st.insert(h);
         }
     }
 
