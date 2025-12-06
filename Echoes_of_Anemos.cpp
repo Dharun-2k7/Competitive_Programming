@@ -3,7 +3,7 @@ using namespace std;
 using ll = long long;
 using vi = vector<int>;
 int main(){
-    int n; cin>>n)) return 0;
+    int n; cin>>n;
     vi h(n);
     for(int i=0;i<n;i++){
         string s; cin>>s;
