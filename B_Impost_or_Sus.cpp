@@ -1,44 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+using ll = long long;
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    int t;
-    cin >> t;
+    ll t; cin >> t;
     while (t--) {
-        string r;
-        cin >> r;
-        int n = r.size();
-
-        int total_u = 0;
-        vector<int> s_positions;
-        for (int i = 0; i < n; i++) {
-            if (r[i] == 'u') total_u++;
-            else s_positions.push_back(i);
+        string r; cin >> r;
+        ll n = r.size();
+        vector<ll> ps;
+        ll tu = 0;
+        for (ll i = 0; i < n; i++) {
+            if (r[i] == 's') ps.push_back(i);
+            else tu++;
         }
-
-        long long kept_u = 0; // maximum u's that can stay as u
-        if (s_positions.empty()) {
-            // no original 's', must create at least two
-            kept_u = (n - 1) / 2;
+        ll ku = 0;
+        if (ps.empty()) {
+            ku = (n - 1) / 2;
         } else {
-            int m = s_positions.size();
-            // before first s
-            kept_u += s_positions[0] / 2;
-            // after last s
-            kept_u += (n - 1 - s_positions.back()) / 2;
-            // between consecutive s's
-            for (int i = 0; i < m - 1; i++) {
-                kept_u += (s_positions[i + 1] - s_positions[i]) / 2;
+            ll pre = ps[0];
+            ku += pre / 2;
+
+            ll suf = (n - 1) - ps.back();
+            ku += suf / 2;
+            for (ll i = 0; i + 1 < (ll)ps.size(); i++) {
+                ll gp = ps[i + 1] - ps[i] - 1;
+                if (gp > 0) ku += (gp + 1) / 2;
             }
         }
 
-        cout << total_u - kept_u << "\n";
+        cout << tu - ku << '\n';
     }
 
-    return 0;
 }
 
 /*

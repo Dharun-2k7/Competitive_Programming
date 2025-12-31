@@ -24,6 +24,6 @@ int main() {
         best = max(best, sa[y] - sb[y]);
     }
 
-    cout << ans << '\n';
-    return 0;
+    cout << ans << endl;
+    
 }
