@@ -48,11 +48,9 @@ int main() {
             long long x;
             cin >> x;
             
-            // dp[r] = list of (capacity, ways)
             vector<vector<pair<__int128, int>>> dp(MAX_N + 1);
             dp[0].emplace_back(0, 1);
             
-            // Process exponents from high to low
             for (int exp = MAX_EXP; exp >= 0; exp--) {
                 if (cnt[exp] == 0) continue;
                 
@@ -61,7 +59,6 @@ int main() {
                 for (int r = 0; r <= MAX_N; r++) {
                     if (dp[r].empty()) continue;
                     
-                    // Try taking k reindeer with this exponent
                     for (int k = 0; k <= cnt[exp]; k++) {
                         int new_r = r + k;
                         if (new_r > MAX_N) break;
@@ -70,7 +67,6 @@ int main() {
                         if (exp >= r) {
                             int k_eff = min(k, exp - r + 1);
                             if (k_eff > 0) {
-                                // 2^{exp-r+1} - 2^{exp-r+1-k_eff}
                                 contribution = ((__int128)1 << (exp - r + 1)) - 
                                               ((__int128)1 << (exp - r + 1 - k_eff));
                             }
@@ -87,7 +83,6 @@ int main() {
                     }
                 }
                 
-                // Merge duplicates in each new_dp[r]
                 for (int r = 0; r <= MAX_N; r++) {
                     if (new_dp[r].empty()) continue;
                     

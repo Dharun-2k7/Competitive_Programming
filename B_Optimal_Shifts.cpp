@@ -26,8 +26,7 @@ int main() {
             mx = max(mx, gap);
         }
 
-        cout << mx << "\n";
+        cout << mx << endl;
     }
 
-    return 0;
 }
