@@ -6,7 +6,6 @@ int main() {
     while (t--) {
         int k, x;
         cin >> k >> x;
-        cout << (ll)k * x + 1 << "\n";
+        cout << (ll)k * x + 1 << endl;
     }
-    return 0;
 }
