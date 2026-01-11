@@ -19,7 +19,7 @@ int main() {
         }
 
         if (ans == LLONG_MAX) ans = m;
-        cout << ans << "\n";
+        cout << ans << endl;
     }
     return 0;
 }
