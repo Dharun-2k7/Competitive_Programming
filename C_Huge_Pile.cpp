@@ -7,7 +7,7 @@ int main(){
         int l=n , r=n;
         int cnt=0;
         while(r!=1){
-            if(l<=k & k<=r) break;
+            if(l<=k && k<=r) break;
             l=l/2;
             r=r/2+r%2;
             cnt++;
