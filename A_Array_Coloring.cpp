@@ -20,6 +20,6 @@ int main() {
         }
 
         cout << (ok ? "YES" : "NO") << endl;
-    }
-    return 0;
-}
+    }}
+
+    
