@@ -17,15 +17,22 @@ using namespace std;
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define end "\n"
+/*
 
+
+
+
+*/
 int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
 
 void solve(){
-    int n; cin >>n;
-    string s; cin >>s;
+    int n,x,y; cin >>n>>x>>y;
+    vi a(n);
+    rep(i,0,n) cin >>a[i];
+     
 }
 
 int32_t main(){
