@@ -22,53 +22,35 @@ int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
- 
+
+
 void solve(){
-    int n; cin >> n;
-    string s; cin >> s;
-    int e10 = 0;
-    rep(i,1,n) {
-        if (s[i] < s[i - 1]){
-            e10 = 1;
-        }
-    }
-    if (!e10){
-        cout << "Bob"<<end;
+    int n; 
+    string s;
+    cin >> n;
+    cin >> s;
+    if(n == 1){
+        cout << "HM" << end;
         return;
     }
-    int val = 0;
-    for (char c : s){
-        val += c == '1';
+
+    int cntH = 0;
+    for(int i = 0; i + 1 < n; ++i){
+        if(s[i] == 'H') ++cntH;
     }
 
-    revrep(i, n-1, 0){
-        char c = s[i];
-        val--;
- 
-        if (val == 0){
-            vi ans;
-            rep(j,0,n){
-                if (j < i && s[j] == '1') ans.pb(j + 1);
-                if (j >= i && s[j] == '0') ans.pb(j + 1);
-            }
-            cout << "Alice"<<end;
-            cout << ans.size() << end;
-            for (int i : ans) cout << i << ' ';
-            cout << end;
-            return;
-        }
-    }
- 
- 
+    int cntM = (n - 1) - cntH;
+
+    if(cntH > cntM) cout << "H" << end;
+    else if(cntH < cntM) cout << "M" << end;
+    else cout << "HM" << end;
 }
-
 int32_t main(){
     fast
-    int t;
-    cin >> t;
-    while(t--){
-        solve();
-    }
+    //int t; cin >>t;
+    //while(t--){
+    solve();
+//}
     return 0;
 }
 
