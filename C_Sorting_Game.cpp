@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define ll long long
+#define int long long
 #define ull unsigned long long
 #define vi vector<int>
 #define vll vector<long long>
@@ -24,8 +24,7 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n; cin >>n;
-    string s; cin >>s;
+    
 }
 
 int32_t main(){
