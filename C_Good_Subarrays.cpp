@@ -27,26 +27,25 @@ int gcd(int a,int b){
 void solve(){
     int n; 
     cin >> n;
-    
-    vi cnt(n, 0);
-    rep(i,0,n){
-        int w; 
-        cin >> w;
-        ++cnt[--w];
+
+    vi pref(n+1,0);
+    rep(i,1,n+1){
+        char c; 
+        cin >> c;
+        pref[i] = c - '0';
+    }
+
+    rep(i,1,n+1) pref[i] += pref[i-1];
+
+    map<int,int> mp;
+    rep(i,0,n+1){
+        mp[pref[i] - i]++;
     }
 
     int ans = 0;
-    rep(v,0,2*n-1){
-        int res = 0;
-        for(int i = 0; 2*i <= v; i++){
-            if(v - i >= n) continue;
-            if(2*i == v){
-                res += cnt[i] / 2;
-            } else {
-                res += min(cnt[i], cnt[v - i]);
-            }
-        }
-        ans = max(ans, res);
+    for(auto &x : mp){
+        int f = x.ss;
+        ans += f * (f - 1) / 2;
     }
 
     cout << ans << end;
@@ -54,7 +53,7 @@ void solve(){
 
 int32_t main(){
     fast
-    int t;
+    int t; 
     cin >> t;
     while(t--){
         solve();
