@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 #define int long long
 #define ull unsigned long long
 #define vi vector<int>
@@ -24,40 +25,30 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n, q;
-    cin >> n >> q;
-
-    vi arr1(n), arr2(n);
-    rep(i,0,n) cin >> arr1[i];
-    rep(i,0,n) cin >> arr2[i];
-    vi arr3(n);
-
-    revrep(i,n - 1,0){
-        if(i == n - 1){
-            arr3[i] = max(arr1[i], arr2[i]);
-        } else {
-            arr3[i] = max(arr3[i + 1], max(arr1[i], arr2[i]));
-        }
+    int n; cin >> n;
+    vi b(n);
+    rep(i,0,n) cin >> b[i];
+    
+    vi pref(n), suff(n);
+    rep(i,0,n){
+        pref[i] = b[i] + i;
+        suff[i] = b[i] - i;
     }
 
-    vi prefix(n);
-    prefix[0] = arr3[0];
     rep(i,1,n){
-        prefix[i] = prefix[i - 1] + arr3[i];
+        pref[i] = max(pref[i], pref[i-1]);
     }
 
-    while(q--){
-        int l, r;
-        cin >> l >> r;
-        l--; r--;
-
-        if(l == 0){
-            cout << prefix[r] << " ";
-        } else {
-            cout << prefix[r] - prefix[l - 1] << " ";
-        }
+    revrep(i,n-2,0){
+        suff[i] = max(suff[i], suff[i+1]);
     }
-    cout << end;
+
+    int ans = 0;
+    rep(m,1,n-1){
+        ans = max(ans, b[m] + pref[m-1] + suff[m+1]);
+    }
+
+    cout << ans << end;
 }
 
 int32_t main(){
@@ -69,7 +60,6 @@ int32_t main(){
     }
     return 0;
 }
-
 
 /*
  ██████████   █████                                              

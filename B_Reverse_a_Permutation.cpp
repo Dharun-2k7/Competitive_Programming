@@ -24,28 +24,28 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >> a[i];
+    int n; 
+    cin >> n;
 
-    rep(i,0,n){
-        int mx = a[i], pos = i;
-        rep(j,i,n){
-            if(a[j] > mx){
-                mx = a[j];
-                pos = j;
-            }
-        }
-        if(pos != i){
-            reverse(a.begin() + i, a.begin() + pos + 1);
-            break;
-        }
+    vi p(n + 1);
+    rep(i,1,n+1) cin >> p[i];
+
+    int ind = 1;
+    while(ind <= n && p[ind] == n - ind + 1) ind++;
+
+    int id = -1;
+    rep(i,ind,n+1){
+        if(p[i] == n - ind + 1) id = i;
     }
 
-    rep(i,0,n) cout << a[i] << " ";
+    rep(i,1,ind) cout << p[i] << ' ';
+
+    if(id != -1){
+        revrep(i,id,ind) cout << p[i] << ' ';
+        rep(i,id+1,n+1) cout << p[i] << ' ';
+    }
     cout << end;
 }
-
 
 int32_t main(){
     fast

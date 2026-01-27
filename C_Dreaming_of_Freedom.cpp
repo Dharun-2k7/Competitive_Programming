@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 #define int long long
 #define ull unsigned long long
 #define vi vector<int>
@@ -23,53 +24,38 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
+const int N = 1e6 + 100;
+vi mn(N);
+
 void solve(){
-    int n, q;
-    cin >> n >> q;
-
-    vi arr1(n), arr2(n);
-    rep(i,0,n) cin >> arr1[i];
-    rep(i,0,n) cin >> arr2[i];
-    vi arr3(n);
-
-    revrep(i,n - 1,0){
-        if(i == n - 1){
-            arr3[i] = max(arr1[i], arr2[i]);
-        } else {
-            arr3[i] = max(arr3[i + 1], max(arr1[i], arr2[i]));
-        }
-    }
-
-    vi prefix(n);
-    prefix[0] = arr3[0];
-    rep(i,1,n){
-        prefix[i] = prefix[i - 1] + arr3[i];
-    }
-
-    while(q--){
-        int l, r;
-        cin >> l >> r;
-        l--; r--;
-
-        if(l == 0){
-            cout << prefix[r] << " ";
-        } else {
-            cout << prefix[r] - prefix[l - 1] << " ";
-        }
-    }
-    cout << end;
+    int n,m;
+    cin >> n >> m;
+    cout << ((n == 1 || mn[n] > m) ? "YES" : "NO") << end;
 }
 
 int32_t main(){
     fast
-    int t;
+
+    rep(d,2,(int)sqrt(N)+1){
+        if(mn[d] == 0){
+            mn[d] = d;
+            for(int i = d*d; i < N; i += d){
+                if(mn[i] == 0) mn[i] = d;
+            }
+        }
+    }
+
+    rep(i,1,N){
+        if(mn[i] == 0) mn[i] = i;
+    }
+
+    int t; 
     cin >> t;
     while(t--){
         solve();
     }
     return 0;
 }
-
 
 /*
  ██████████   █████                                              
