@@ -24,19 +24,17 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n ; cin >>n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
+    int n,x; cin >>n>>x;
     
 }
 
 int32_t main(){
     fast
-    int t;
-    cin >> t;
-    while(t--){
+    //int t;
+    //cin >> t;
+    //while(t--){
         solve();
-    }
+    //}
     return 0;
 }
 

@@ -24,19 +24,29 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n ; cin >>n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    int n; cin >> n;
+    cout << n << " " ;
+    while (n > 1)
+        if (n % 2 == 0)
+        {
+            n = n / 2;
+            cout << n << " ";
+        }
+        else
+        {
+            n = n * 3 + 1;
+
+            cout << n << " ";
+        }
 }
 
 int32_t main(){
     fast
-    int t;
-    cin >> t;
-    while(t--){
+    //int t;
+    //cin >> t;
+    //while(t--){
         solve();
-    }
+    //}
     return 0;
 }
 

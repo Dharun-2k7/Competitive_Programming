@@ -16,27 +16,45 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define end "\n"
+#define nl "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
 
+
 void solve(){
-    int n ; cin >>n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    int n; 
+    cin >> n;
+
+    vi cnt(n, 0);
+    cnt[0] = 1;
+
+    int ps = 0;
+    rep(i,0,n){
+        int x; 
+        cin >> x;
+        ps = (ps + x) % n;
+        if(ps < 0) ps += n;
+        cnt[ps]++;
+    }
+
+    int ans = 0;
+    rep(i,0,n){
+        ans += cnt[i] * (cnt[i] - 1) / 2;
+    }
+
+    cout << ans << nl;
 }
 
 int32_t main(){
     fast
-    int t;
-    cin >> t;
-    while(t--){
+    //int t;
+    //cin >> t;
+    //while(t--){
         solve();
-    }
+    //}
     return 0;
 }
 
