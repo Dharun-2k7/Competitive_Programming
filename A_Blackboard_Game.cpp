@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 #define int long long
 #define ull unsigned long long
 #define vi vector<int>
@@ -18,37 +19,12 @@ using namespace std;
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define end "\n"
 
-int gcd(int a,int b){
-    if(b==0) return a;
-    return gcd(b,a%b);
-}
-
-
 void solve(){
-    int n; 
+    int n;
     cin >> n;
-
-    vi a(2*n);
-    rep(i,0,2*n) cin >> a[i];
-
-    unordered_map<int,int> cnt;
-    for(int x : a) cnt[x]++;
-
-    int odd = 0, even = 0;
-    for(auto &p : cnt){
-        if(p.ss & 1) odd++;
-        else even++;
-    }
-
-    
-    int x = min(even, n);
-    if((x & 1) != (n & 1) && odd == 0) x--;
-
-    if(x < 0) x = 0;
-
-    int ans = odd + 2*x;
-    cout << ans << end;
+    cout << ((n % 4) ? "Alice" : "Bob") << end;
 }
+
 int32_t main(){
     fast
     int t;

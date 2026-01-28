@@ -25,30 +25,46 @@ int gcd(int a,int b){
 
 
 void solve(){
-    int n; 
-    cin >> n;
+    int W,H; cin >> W >> H;
+    int x1,y1,x2,y2;
+    cin >> x1 >> y1 >> x2 >> y2;
 
-    vi a(2*n);
-    rep(i,0,2*n) cin >> a[i];
+    int w2,h2;
+    cin >> w2 >> h2;
 
-    unordered_map<int,int> cnt;
-    for(int x : a) cnt[x]++;
+    int w1 = x2 - x1;
+    int h1 = y2 - y1;
 
-    int odd = 0, even = 0;
-    for(auto &p : cnt){
-        if(p.ss & 1) odd++;
-        else even++;
+    int left = w2;
+    int right = W - w2;
+    int bottom = h2;
+    int top = H - h2;
+
+    int needL = max(left - x1, 0LL);
+    int needR = max(x2 - right, 0LL);
+    int needB = max(bottom - y1, 0LL);
+    int needT = max(y2 - top, 0LL);
+
+    const int INF = 4e18;
+
+    if(w1 + w2 > W){
+        needL = needR = INF;
+    }
+    if(h1 + h2 > H){
+        needT = needB = INF;
     }
 
-    
-    int x = min(even, n);
-    if((x & 1) != (n & 1) && odd == 0) x--;
+    int ans = min({needL, needR, needT, needB});
 
-    if(x < 0) x = 0;
-
-    int ans = odd + 2*x;
-    cout << ans << end;
+    if(ans >= INF){
+        cout << -1 << end;
+    }else{
+        cout << fixed << setprecision(9) << (double)ans << end;
+    }
 }
+
+
+
 int32_t main(){
     fast
     int t;
