@@ -1,23 +1,67 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
+#define int long long
+#define ull unsigned long long
+#define vi vector<int>
+#define vll vector<long long>
+#define vvi vector<vi>
+#define vvll vector<vll>
+#define pii pair<int,int>
+#define pll pair<long long,long long>
+#define pb push_back
+#define mp make_pair
+#define ff first
+#define ss second
+#define all(v) v.begin(),v.end()
+#define rep(i,a,b) for(int i=a;i<b;i++)
+#define revrep(i,a,b) for(int i=a;i>=b;i--)
+#define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define nl "\n"
 
-int main() {
-    int t; cin >> t;
-    while (t--) {
-        int n, l, r;
+int gcd(int a,int b){
+    if(b==0) return a;
+    return gcd(b,a%b);
+}
+
+void solve(){
+    int n,l,r;
         cin >> n >> l >> r;
-        vector<int> p(n + 1);
+
+        vi p(n+1), a(n+1);
         p[0] = 0;
 
-        for (int i = 1; i <= n; i++)
-            p[i] = i;
+        rep(i,1,n+1) p[i] = i;
 
-        p[r] = p[l - 1];
-        vector<int> a(n + 1);
-        for (int i = 1; i <= n; i++)
-            a[i] = p[i] ^ p[i - 1];
+        p[r] = p[l-1];
 
-        for (int i = 1; i <= n; i++)
-            cout << a[i] << (i == n ? '\n' : ' ');
-    }
+        rep(i,1,n+1) a[i] = p[i] ^ p[i-1];
+
+        rep(i,1,n+1){
+            cout << a[i];
+            if(i == n) cout << nl;
+            else cout << " ";
+        }
 }
+
+int32_t main(){
+    fast
+    int t;
+    cin >> t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
+
+/*
+ ██████████   █████                                              
+░░███░░░░███ ░░███                                               
+ ░███   ░░███ ░███████    ██████   ████████  █████ ████ ████████ 
+ ░███    ░███ ░███░░███  ░░░░░███ ░░███░░███░░███ ░███ ░░███░░███
+ ░███    ░███ ░███ ░███   ███████  ░███ ░░░  ░███ ░███  ░███ ░███
+ ░███    ███  ░███ ░███  ███░░███  ░███      ░███ ░███  ░███ ░███
+ ██████████   ████ █████░░████████ █████     ░░████████ ████ █████
+░░░░░░░░░░   ░░░░ ░░░░░  ░░░░░░░░ ░░░░░       ░░░░░░░░ ░░░░ ░░░░░
+
+ Author: Dharun
+*/

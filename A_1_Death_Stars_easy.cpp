@@ -16,84 +16,56 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define end "\n"
+#define nl "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
 
-void solve(){
-    int n; cin >> n;
-    string s; cin >> s;
-
-    int os = 0;
-    rep(i,0,n) if(s[i]=='1') os++;
-
-    if(os == 0){
-        cout << (n + 2) / 3 << end;
-        return;
-    }
-
-    int ans = os;
-    vi pos;
-    rep(i,0,n){
-        if(s[i]=='1') pos.pb(i);
-    }
-
-    int l = pos[0];
-    ans += (l + 1) / 3;
-
-    rep(i,0,(int)pos.size()-1){
-        int gp = pos[i+1] - pos[i] - 1;
-        if(gp > 0){
-            ans += gp / 3;
-        }
-    }
-
-    int r = (n - 1) - pos.back();
-    ans += (r + 1) / 3;
-
-    cout << ans << end;
+vector<string> rot(vector<string> g){
+    int n = g.size();
+    vector<string> r(n, string(n,' '));
+    rep(i,0,n) rep(j,0,n)
+        r[j][n-1-i] = g[i][j];
+    return r;
 }
 
+vector<string> flh(vector<string> g){
+    reverse(all(g));
+    return g;
+}
+
+vector<string> flv(vector<string> g){
+    for(auto &s: g) reverse(all(s));
+    return g;
+}
+
+void solve(){
+    int n; cin >> n;
+    vector<string> a(n), b(n);
+    rep(i,0,n) cin >> a[i];
+    rep(i,0,n) cin >> b[i];
+
+    vector<string> cur = a;
+
+    rep(k,0,4){
+        if(cur == b || flh(cur) == b || flv(cur) == b){
+            cout << "Yes" << nl;
+            return;
+        }
+        cur = rot(cur);
+    }
+
+    cout << "No" << nl;
+}
 
 int32_t main(){
     fast
-    int t;
-    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve();
     return 0;
 }
-/*
-if there are no 1s 
 
-    we can just make ans as ceil of n/3 
-     
-    00000 tc 3 
-     
-    possible ways :
-
-        01010 -- 2 
-        10101 -- 3
-        01001 --2
-
-        min val we can get is 2 ie ceil of n/3
-
-    how can we mininise if 1 is there 
-
-     can we break the array into segments when an 1 is found 
-        
-          eg :  0000100001000   tc 5 
-         
-             so here we can break it as [0000] 1 [0000] 1 [000]
-                           if the zero seg is between two 1's
-                             then the 1st 0 is blocked by left 1 last 0 is blocked by rigth 1
-                        
-                             so the rest mid 0's can be placed like the gap /3 
-*/
 /*
  ██████████   █████                                              
 ░░███░░░░███ ░░███                                               
