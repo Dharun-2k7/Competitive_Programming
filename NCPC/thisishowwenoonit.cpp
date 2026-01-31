@@ -23,8 +23,6 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
-
-    
 void solve(){
     string s;
     cin >> s;
