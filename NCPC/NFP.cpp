@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 #define int long long
 #define ull unsigned long long
 #define vi vector<int>
@@ -24,19 +25,30 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int x, y; cin >> x >> y;
-    int mt = (x + y - 1) % 12 + 1;
-    cout << mt << end;
-}
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
 
+    if(n == 1){
+        cout << "YES" << end;
+        return;
+    }
+
+    if(s[0] == s[1] || s[n-1] == s[n-2]){
+        cout << "YES" << end;
+    } else {
+        cout << "NO" << end;
+    }
+}
 
 int32_t main(){
     fast
-    //int t;
-    //cin >> t;
-    //while(t--){
+    int t;
+    cin >> t;
+    while(t--){
         solve();
-    //}
+    }
     return 0;
 }
 

@@ -23,9 +23,7 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 void solve(){
-    int n, t;
-    cin >> n >> t;
-
+    int n, t;cin >> n >> t;
     vi a(n);
     rep(i,0,n) cin >> a[i];
 
@@ -53,7 +51,7 @@ int32_t main(){
         solve();
     }*/
    solve();
-   
+
     return 0;
 }
 

@@ -24,19 +24,17 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int x, y; cin >> x >> y;
-    int mt = (x + y - 1) % 12 + 1;
-    cout << mt << end;
+    int n, x; cin >>n>>x;
+    cout << x-n <<end;
 }
-
 
 int32_t main(){
     fast
-    //int t;
-    //cin >> t;
-    //while(t--){
+    int t;
+    cin >> t;
+    while(t--){
         solve();
-    //}
+    }
     return 0;
 }
 

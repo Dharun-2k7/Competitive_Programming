@@ -23,20 +23,35 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
+
+    
 void solve(){
-    int x, y; cin >> x >> y;
-    int mt = (x + y - 1) % 12 + 1;
-    cout << mt << end;
+    string s;
+    cin >> s;
+
+    int cn = 0, co = 0;
+    for(char c : s){
+        if(c == 'n') cn++;
+        else if(c == 'o') co++;
+    }
+
+    if(cn < 2 || co < 2){
+        cout << 0 << end;
+        return;
+    }
+
+    int k = min(cn - 1, co / 2);
+    cout << k << end;
 }
 
 
 int32_t main(){
     fast
-    //int t;
+    int t=1;
     //cin >> t;
-    //while(t--){
+    while(t--){
         solve();
-    //}
+    }
     return 0;
 }
 

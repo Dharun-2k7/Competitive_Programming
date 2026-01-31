@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 #define int long long
 #define ull unsigned long long
 #define vi vector<int>
@@ -18,27 +19,67 @@ using namespace std;
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define end "\n"
 
+const int N = 1005;
+vi adj[N];
+bool vis[N];
+
 int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
 
-void solve(){
-    int x, y; cin >> x >> y;
-    int mt = (x + y - 1) % 12 + 1;
-    cout << mt << end;
+bool check(int start){
+    memset(vis, 0, sizeof(vis));
+    queue<int> q;
+
+    q.push(start);
+    vis[start] = true;
+
+    while(!q.empty()){
+        int u = q.front(); q.pop();
+        for(int v : adj[u]){
+            if(vis[v]) return true; 
+            vis[v] = true;
+            q.push(v);
+        }
+    }
+    return false;
 }
 
+void solve(){
+    int n;
+    cin >> n;
+
+    rep(i,1,n+1){
+        adj[i].clear();
+        int m;
+        cin >> m;
+        while(m--){
+            int p;
+            cin >> p;
+            adj[i].pb(p);
+        }
+    }
+
+    rep(i,1,n+1){
+        if(check(i)){
+            cout << "Yes" << end;
+            return;
+        }
+    }
+    cout << "No" << end;
+}
 
 int32_t main(){
     fast
-    //int t;
-    //cin >> t;
-    //while(t--){
+    int t;
+    cin >> t;
+    while(t--){
         solve();
-    //}
+    }
     return 0;
 }
+
 
 /*
  ██████████   █████                                              

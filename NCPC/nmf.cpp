@@ -24,11 +24,17 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int x, y; cin >> x >> y;
-    int mt = (x + y - 1) % 12 + 1;
-    cout << mt << end;
-}
+    string f, l;
+    cin >> f >> l;
 
+    char fc = tolower(f[0]);
+
+    for(char &c : l){
+        c = tolower(c);
+    }
+
+    cout << fc << l << "@noon.com" << end;
+}
 
 int32_t main(){
     fast
