@@ -1,6 +1,5 @@
 #include<bits/stdc++.h>
 using namespace std;
-
 #define int long long
 #define ull unsigned long long
 #define vi vector<int>
@@ -17,66 +16,44 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define end "\n"
-
-const int INF = (int)4e18;
+#define nl "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
 
+
+bool check(string s, string p1, string p2){
+    int pos1 = s.find(p1);
+    if(pos1 == string::npos) return false;
+
+    int pos2 = s.find(p2, pos1 + p1.size());
+    return pos2 != string::npos;
+}
+
 void solve(){
-    string s;
-    cin >> s;
-    int n = s.size();
+    string s, p1, p2;
+    cin >> s >> p1 >> p2;
 
-    bool inf = false;
-    rep(i,0,n-1){
-        bool a = (s[i] == '>' || s[i] == '*');
-        bool b = (s[i+1] == '<' || s[i+1] == '*');
-        if(a && b) inf = true;
-    }
+    bool f = check(s, p1, p2);
 
-    if(inf){
-        cout << -1 << end;
-        return;
-    }
+    reverse(s.begin(), s.end());
+    bool r = check(s, p1, p2);
 
-    vll l(n), r(n);
-
-    rep(i,0,n){
-        if(s[i] == '>') l[i] = -INF;
-        else{
-            if(i == 0) l[i] = 1;
-            else l[i] = 1 + l[i-1];
-        }
-    }
-
-    revrep(i,n-1,0){
-        if(s[i] == '<') r[i] = -INF;
-        else{
-            if(i == n-1) r[i] = 1;
-            else r[i] = 1 + r[i+1];
-        }
-    }
-
-    int ans = 0;
-    rep(i,0,n){
-        int best = max(l[i], r[i]);
-        ans = max(ans, best);
-    }
-
-    cout << ans << end;
+    if(f && r) cout << "both" << nl;
+    else if(f) cout << "forward" << nl;
+    else if(r) cout << "backward" << nl;
+    else cout << "fantasy" << nl;
 }
 
 int32_t main(){
     fast
-    int t;
-    cin >> t;
-    while(t--){
+    //int t;
+    //cin >> t;
+    //while(t--){
         solve();
-    }
+    //}
     return 0;
 }
 
