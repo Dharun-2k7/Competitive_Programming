@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 #define int long long
 #define ull unsigned long long
 #define vi vector<int>
@@ -16,7 +17,7 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define nl "\n"
+#define end "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
@@ -24,74 +25,37 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n, m; 
-    cin >> n >> m;
+    int n; 
+    cin >> n;
 
-    vi a(n), b(m), c(m);
-    rep(i,0,n) cin >> a[i];
-    rep(i,0,m) cin >> b[i];
-    rep(i,0,m) cin >> c[i];
+    vi l(n), r(n);
+    vi a(2*n + 1, 0);
+    vi freq(2*n + 1, 0);
 
-    vi x;
-    vector<pii> y;
-
-    rep(i,0,m){
-        if(c[i] == 0) x.pb(b[i]);
-        else y.pb(mp(b[i], c[i]));
-    }
-
-    multiset<int> s;
-    rep(i,0,n) s.insert(a[i]);
-
-    sort(all(x));
-    sort(all(y));
-
-    int i = 0, j = 0;
-    int ans = 0;
-
-    while(!s.empty() && (i < x.size() || j < y.size())){
-        auto it = s.begin();
-        int cur = *it;
-        s.erase(it);
-
-        if(j < y.size() && y[j].ff <= cur){
-            cur = max(cur, y[j].ss);
-            j++;
-            s.insert(cur);
-            ans++;
-            continue;
-        }
-
-        if(i < x.size() && x[i] <= cur){
-            i++;
-            ans++;
-            continue;
+    rep(i,0,n){
+        cin >> l[i] >> r[i];
+        if(l[i] == r[i]){
+            a[l[i]] = 1;
+            freq[l[i]]++;
         }
     }
 
-    cout << ans << nl;
+    rep(i,1,2*n+1){
+        a[i] += a[i-1];
+    }
+
+    string s = "";
+    rep(i,0,n){
+        int x = l[i], y = r[i];
+        if(y - (x - 1) == a[y] - a[x - 1]){
+            if(x != y) s.pb('0');
+            else s.pb('0' + (freq[x] == 1));
+        }
+        else s.pb('1');
+    }
+
+    cout << s << end;
 }
-/*
-obs
-3 5
-1 7 7
-6 6 2 2 2
-2 0 0 7 2
-
-our sword vanishes after killing a monster and if the ci of that place is greater than 0 its value can be replaced with the max
-i think i shld not waste my sword where ci=0
-
-but if we get a new swords it will alwayrs be greater than or eql to the prev sword
-
-but when can i kill the mosters when ci=0 ? coz i wont get a new swords wwhen ci =0
-
-its better to kill the monster with ci>0 befroe going to monster with ci=0
-
-maybe we can go from largest value to the smallest value of mosnter
-coz each time u kill a moster u get a new sword which is greater than or eql to the prev sword
-if bj can be killed the next small can be killed too 
-
-*/
 int32_t main(){
     fast
     int t;
@@ -101,6 +65,9 @@ int32_t main(){
     }
     return 0;
 }
+
+
+
 
 /*
  ██████████   █████                                              
