@@ -24,24 +24,20 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    vi cost ;
-    int c=3;
-    int  cnt=1;
-    rep(i,0,21){
-        cost.pb(c);
-        c=3*c+cnt;
-        cnt *=3;
-    }
-    int n; cin >>n;
-    int mn=0 , mnct=0;
-    int sz=0;
-    while(n){
-        mn+=n%3;
-        mnct+=(n%3)*cost[sz];
-        n/=3;
-        sz++;
-    }
-    cout<<mnct<<end;
+    int n; cin >> n;
+    vi a(n),b(n+1);
+    rep(i,0,n) cin >> a[i];
+    rep(i,0,n+1) cin >> b[i];
+
+    int ans=0;
+    int add= 1e10;
+    rep(i,0,n){
+        ans+= abs(a[i]-b[i]);
+        if((a[i]-b[n])*(b[n]-b[i])>=0) add=1;
+        else add =min(add , 1+min(abs(a[i]-b[n]),abs(b[n]-b[i])));
+    } 
+    ans+=add;
+    cout<<ans<<end;   
 
 }
 
