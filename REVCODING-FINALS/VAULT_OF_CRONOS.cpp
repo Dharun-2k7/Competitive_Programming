@@ -1,5 +1,3 @@
-*******************************************************************************/
-
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -18,7 +16,7 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define nl "\n"
+#define end "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
@@ -26,28 +24,36 @@ int gcd(int a,int b){
 }
 
 void solve(){
-   int n; cin >>n;
-   vi a(n);
-   rep(i,0,n) cin >>a[i];
-   sort(all(a));
-   
-   int ans = 0, cnt = 0;
-   revrep(i,n-1,0){
-       cnt++;
-       if(cnt % 3 != 0) ans += a[i];
-   }
-   cout << ans << endl;
+    int n, k;
+    cin >> n >> k;
+
+    int lcm = 1;
+
+    rep(i,0,n){
+        int a; 
+        cin >> a;
+
+        if(lcm > k) continue;
+        if(a == 0 || a == 1) continue;
+
+        int g = gcd(lcm, a);
+        int x = a / g;
+
+        if(lcm > k / x){
+            lcm = k + 1;
+        } else {
+            lcm *= x;
+        }
+    }
+    cout << (lcm > k ? -1 : lcm % 1000000007) << endl;
 }
 
 int32_t main(){
     fast
-    int t;
-    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve();
     return 0;
 }
+
 
 /*
  ██████████   █████                                              
@@ -60,4 +66,25 @@ int32_t main(){
 ░░░░░░░░░░   ░░░░ ░░░░░  ░░░░░░░░ ░░░░░       ░░░░░░░░ ░░░░ ░░░░░
 
  Author: Dharun
+*/
+/*
+obs:
+
+we need to increase every element in the array by 1 for k num of times until it turns to be 0 simultaneously
+ so we mst find lcm of the elements in array 
+   
+  if the lcm of these are greater than k then the machine sgatters 
+    else then  lcm of all num is the ans 
+
+    eg :
+
+      3 100
+      2 3 4   op = 12
+
+      3 10 
+      2 3 5  -- op =-1 lcm > 10
+
+      4 200 
+      4 6 8 10  -- lcm 120 
+
 */

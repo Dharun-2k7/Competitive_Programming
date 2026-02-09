@@ -1,5 +1,3 @@
-*******************************************************************************/
-
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -41,11 +39,7 @@ void solve(){
 
 int32_t main(){
     fast
-    int t;
-    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve();
     return 0;
 }
 

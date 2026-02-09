@@ -1,5 +1,3 @@
-*******************************************************************************/
-
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -25,27 +23,50 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
-void solve(){
-   int n; cin >>n;
-   vi a(n);
-   rep(i,0,n) cin >>a[i];
-   sort(all(a));
-   
-   int ans = 0, cnt = 0;
-   revrep(i,n-1,0){
-       cnt++;
-       if(cnt % 3 != 0) ans += a[i];
-   }
-   cout << ans << endl;
-}
 
+void solve(){
+    int n, m; cin >>n>>m;
+    vector<vector<pair<int,int>>> adj(n+1);
+    rep(i,0,m){
+        int u,v,c; cin >>u >>v>>c;
+        adj[u].pb({v,c});
+        adj[v].pb({u,c});
+    }
+    
+    vector<vi> dist(n+1, vi(4, -1));
+    queue<pii> q;
+    
+    dist[1][0] = 0;
+    q.push({1, 0});
+    
+    while(!q.empty()){
+        int u = q.front().ff;
+        int pv= q.front().ss;
+        q.pop();
+        
+        int d = dist[u][pv];
+        
+        if(u == n){
+            cout << d << nl;
+            return;
+        }
+        
+        for(auto& eg : adj[u]){
+            int v = eg.ff;
+            int c = eg.ss;
+            if(c != pv){
+                if(dist[v][c] == -1){
+                    dist[v][c] = d + 1;
+                    q.push({v, c});
+                }
+            }
+        }
+    }
+    cout << -1 << nl;
+}
 int32_t main(){
     fast
-    int t;
-    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve();
     return 0;
 }
 

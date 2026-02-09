@@ -1,5 +1,3 @@
-*******************************************************************************/
-
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -18,7 +16,7 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define nl "\n"
+#define end "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
@@ -26,17 +24,24 @@ int gcd(int a,int b){
 }
 
 void solve(){
-   int n; cin >>n;
-   vi a(n);
-   rep(i,0,n) cin >>a[i];
-   sort(all(a));
-   
-   int ans = 0, cnt = 0;
-   revrep(i,n-1,0){
-       cnt++;
-       if(cnt % 3 != 0) ans += a[i];
-   }
-   cout << ans << endl;
+    int n; cin >> n;
+    vi a(n+1);
+    rep(i,1,n+1) cin >> a[i];
+
+    vi pref(n+1,0);
+    rep(i,1,n+1) pref[i] = pref[i-1] + a[i];
+
+    int total = pref[n];
+    int ans = total;
+
+    int mn = 0; 
+    for(int r=1;r<=n;r++){
+        int cur = r*r - pref[r];
+        ans = max(ans, total + cur - mn);
+        mn = min(mn, r*r - pref[r]);
+    }
+
+    cout << ans << end;
 }
 
 int32_t main(){
