@@ -23,31 +23,22 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
-bool isprime(int n){
-    if(n < 2) return false;
-    for(int i = 2; i * i <= n; i++){
-        if(n % i == 0) return false;
-    }
-    return true;
-}
-
-
 void solve(){
-    int x, y; cin >>x>>y;
-    if(x>1 && y >1) {
-        cout << "NO" <<nl;
-        return;
+    int n; cin >> n;
+    string s; cin >>s;
+    s="0"+s;
+    int ans=0;
+    char curr=s[0];
+    rep(i,1,n+1){
+        char cng=s[i];
+        if(cng!=curr){
+            ans++;
+            curr=cng;
+        }
     }
-    int a=x;
-    rep(i,1,y){
-        a=a*10+x;
-    }
-    if(isprime(a)){
-        cout << "YES" <<nl;
-    } else {
-        cout << "NO" <<nl;
-    }
-
+    if(ans>=3) cout << (ans-2+n) << nl;
+    else if (ans==2) cout << (ans-1+n) << nl;
+    else cout << ans+n << nl;
 }
 
 int32_t main(){
