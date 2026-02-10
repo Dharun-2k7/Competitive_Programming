@@ -25,7 +25,18 @@ int gcd(int a,int b){
 
 void solve(){
     int n,x; cin >>n>>x;
-    
+    vi a(n);
+    rep(i,0,n) cin >> a[i];
+    int pref=0;
+    int ans=0;
+    map<int,int> sum;
+    sum[0]=1;
+    for(int i:a){
+        pref+=i;
+        ans+=sum[pref - x];
+        sum[pref]++;
+    }
+    cout <<ans<<end;
 }
 
 int32_t main(){
