@@ -24,47 +24,12 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n;  cin >> n;
-
-    vi a(n), b(n), c(n);
-    rep(i,0,n) cin >> a[i];
-    rep(i,0,n) cin >> b[i];
-    rep(i,0,n) cin >> c[i];
-
-    int ans = n;
-
-    {
-        int res = 0;
-        rep(i,0,n){
-            bool ok = true;
-            rep(j,0,n){
-                if(a[j] >= b[(i + j) % n]){
-                    ok = false;
-                    break;
-                }
-            }
-            if(ok) res++;
-        }
-        ans *= res;
-    }
-
-    {
-        int res = 0;
-        rep(i,0,n){
-            bool ok = true;
-            rep(j,0,n){
-                if(b[j] >= c[(i + j) % n]){
-                    ok = false;
-                    break;
-                }
-            }
-            if(ok) res++;
-        }
-        ans *= res;
-    }
-
-    cout << ans << end;
+    int n; cin >>n;
+    vi  a(n);
+    rep(i,0,n) cin >>a[i];
+    
 }
+
 int32_t main(){
     fast
     int t;
