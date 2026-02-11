@@ -16,7 +16,7 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define end "\n"
+#define nl "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
@@ -24,7 +24,24 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    
+    int n; cin >> n;
+    vi a(n+1);
+    rep(i,1,n+1) cin >> a[i];
+
+    vector<vi> pos(n+1);
+    rep(i,1,n+1)  if(a[i] <= n) pos[a[i]].pb(i);
+    int ans = 0;
+    rep(i,1,n+1){
+        if(pos[i].empty()) continue;
+        for(int k = 1; k*i <= n; k++){
+            for(int ind : pos[i]){
+                int j = ind + k*i;
+                if(j > n) break;
+                if(a[j] == k) ans++;
+            }
+        }
+    }
+    cout << ans << nl;
 }
 
 int32_t main(){
@@ -36,7 +53,29 @@ int32_t main(){
     }
     return 0;
 }
+/*
+ ai⋅aj=j−i 
 
+    i<j , so our rhs wl be j-i<=n
+    so we dont have to consider the producst which give ans more than n
+    ai⋅aj<=n
+    
+    so we can ignore the products which have val more than n
+    
+    can wrt as 
+          j=i+ai⋅aj
+    so for any j the ans will be i+ prod of two nums
+    so we can just check the vals of j in the particular pos
+      
+       eg ) ai = 3
+            3 * aj = j.i
+         ===> j-i = 3*aj  so we can now just check the vals of j in the particular pos
+              muls of 3 
+              j=i+3
+              j=i+6 etc...
+              so we can check the vals in such patter upto n 
+
+*/
 /*
  ██████████   █████                                              
 ░░███░░░░███ ░░███                                               

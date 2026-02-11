@@ -16,14 +16,33 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define end "\n"
+#define nl "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
-
+int dg(int x){
+    int s = 0;
+    while(x){
+        s += x % 10;
+        x /= 10;
+    }
+    return s;
+}
 void solve(){
+    int x; 
+    cin >> x;
+    
+    int ans = 0;
+    
+    rep(s,1,91){       
+        int y = x + s;
+        if(dg(y) == s)
+            ans++;
+    }
+    
+    cout << ans << nl;
     
 }
 

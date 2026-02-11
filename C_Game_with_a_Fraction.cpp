@@ -16,7 +16,7 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define end "\n"
+#define nl "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
@@ -24,7 +24,8 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    
+    int p,q ; cin >>p >>q;
+    cout << ((p < q && 3*p >= 2*q) ? "Bob" : "Alice") << nl;
 }
 
 int32_t main(){
