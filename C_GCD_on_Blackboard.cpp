@@ -17,40 +17,43 @@ using namespace std;
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define nl "\n"
-
+const int MAX = 1e5+5;
 int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
-int dg(int x){
-    int s = 0;
-    while(x){
-        s += x % 10;
-        x /= 10;
-    }
-    return s;
-}
+
+int arr[MAX];
+int prefgcd[MAX];
+int suffgcd[MAX];
+
 void solve(){
-    int x;  cin >> x;
+    int n; cin >>n;
+    vi a(n); 
+    rep (i,0,n) cin >> a[i];
+    sort(all(a));
+    prefgcd[0] = a[0];
+    suffgcd[n+1] = 0;
+    revrep (i,n-1,0) suffgcd[i] = gcd(suffgcd[i+1],a[i]);
+    rep (i,1,n) prefgcd[i] = gcd(prefgcd[i-1],a[i]);
     int ans = 0;
-    
-    rep(s,1,91){       
-        int y = x + s;
-        if(dg(y) == s)
-            ans++;
-    }
-    
+    rep (i,0,n) ans = max(ans,gcd(prefgcd[i-1],suffgcd[i+1]));
     cout << ans << nl;
-    
+
 }
 
-int32_t main(){
-    fast
+void test(){
     int t;
     cin >> t;
     while(t--){
         solve();
     }
+}
+
+int32_t main(){
+    fast
+    //test();
+    solve();
     return 0;
 }
 
