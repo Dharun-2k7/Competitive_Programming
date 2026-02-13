@@ -5,6 +5,7 @@ using namespace std;
 #define vi vector<int>
 #define vll vector<long long>
 #define vvi vector<vi>
+#define vb vector<bool>
 #define vvll vector<vll>
 #define pii pair<int,int>
 #define pll pair<long long,long long>
@@ -18,34 +19,42 @@ using namespace std;
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define end "\n"
 
-const int MAX=1000;
-int pref[MAX+1][MAX+1];
-int a[MAX+1][MAX+1];
-
 int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
 
 void solve(){
-    int n, q; cin >>n>>q;
-    rep(i,0,n){
-        rep(j,0,n){
-            char b; cin >>b;
-            a[i+1][j+1]+=b=='*';
-        }        
-    }
-    rep(i,1,n+1){
-        rep(j,1,n+1){
-            pref[i][j]=a[i][j]+pref[i-1][j]+pref[i][j-1]-pref[i-1][j-1];    
+    string s; 
+    cin >> s;
+    int n = s.length();
+
+    vector<vi> dp(n, vi(n));
+    vector<vb> pal(n, vb(n));
+
+    for(int i = n-1; i >= 0; i--){
+        dp[i][i] = 1;
+        pal[i][i] = 1;
+
+        for(int j = i+1; j < n; j++){
+            if(s[i] == s[j]){
+                if(j - i == 1) 
+                    pal[i][j] = 1;
+                else 
+                    pal[i][j] = pal[i+1][j-1];
+            }
+
+            dp[i][j] = dp[i+1][j] + dp[i][j-1] - dp[i+1][j-1] + pal[i][j];
         }
     }
-    rep(x,0,q){
-        int x1,y1,x2,y2; cin >>x1>>y1>>x2>>y2;
-        cout <<pref[x2][y2]-pref[x1-1][y2]-pref[x2][y1-1]+pref[x1-1][y1-1]<<end;
+
+    int q; 
+    cin >> q;
+    while(q--){
+        int l,r; 
+        cin >> l >> r;
+        cout << dp[l-1][r-1] << end;
     }
-
-
 }
 
 void test(){
