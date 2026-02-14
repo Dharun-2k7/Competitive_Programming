@@ -16,7 +16,7 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define end "\n"
+#define nl "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
@@ -24,11 +24,54 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int h,w,n ; 
-    cin >> h>>w>>n;
-    vector<string> v(n);
-    rep(i,0,n) cin >> v[i];
-    
+    int n,m;
+    cin >> n >> m;
+
+    vector<vector<pii>> adj(n+1);
+    rep(i,0,m){
+        int a,b,w;
+        cin >> a >> b >> w;
+        adj[a].pb({b,w});
+        adj[b].pb({a,w});
+    }
+
+    const int INF = 1e18;
+    vi dist(n+1, INF), par(n+1, -1);
+
+    priority_queue<pii, vector<pii>, greater<pii>> pq;
+    dist[1] = 0;
+    pq.push({0,1});
+
+    while(!pq.empty()){
+        auto [d,u] = pq.top();
+        pq.pop();
+
+        if(d > dist[u]) continue;
+
+        for(auto [v,w] : adj[u]){
+            if(dist[v] > d + w){
+                dist[v] = d + w;
+                par[v] = u;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+
+    if(dist[n] == INF){
+        cout << -1 << nl;
+        return;
+    }
+
+    vi path;
+    int cur = n;
+    while(cur != -1){
+        path.pb(cur);
+        cur = par[cur];
+    }
+
+    reverse(all(path));
+    for(int x : path) cout << x << " ";
+    cout << nl;
 }
 
 void test(){
