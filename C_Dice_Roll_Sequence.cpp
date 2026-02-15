@@ -25,7 +25,27 @@ int gcd(int a,int b){
 bool is_adj(int u , int v){
     return u!=v &&(u+v!=7);
 }
+// direct greedy version
 void solve(){
+    int n; cin >>n;
+    vi a(n);
+    rep(i,0,n) cin >> a[i];
+    int cnt=0, j=1;
+    while(j<n){
+        if((a[j]==a[j-1])||a[j]==abs(7-a[j-1])){
+            cnt++;
+            j+=2;
+        }
+        else j++;
+    }
+    cout << cnt << end;
+}
+
+
+
+
+//overkill soln :()
+/*void solve(){
    int n; cin >>n;
    vi a(n+1);
    for(int i=1;i<=n;i++) cin >> a[i];
@@ -51,6 +71,7 @@ void solve(){
    rep(j,1,7) ans=min(ans,dp[j]);
    cout << ans << end;
 }
+*/
 
 void test(){
     int t;
