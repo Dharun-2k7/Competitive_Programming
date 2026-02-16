@@ -24,12 +24,39 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n , m; cin >>n>>m;
-    int a[n][m];
-    rep(i,0,n) rep(j,0,m) cin >>a[i][j];
-    
+    int n,m,k;
+    cin >> n >> m >> k;
 
+    vi b(n);
+    rep(i,0,n) cin >> b[i];
+
+    vi l(m), r(m), d(m);
+    rep(i,0,m) cin >> l[i] >> r[i] >> d[i];
+
+    vi op(m+1,0);
+    vi ans(n+1,0);
+
+    rep(i,0,k){
+        int x,y;
+        cin >> x >> y;
+        op[x-1]++;
+        op[y]--;
+    }
+
+    rep(i,1,m) op[i] += op[i-1];
+
+    rep(i,0,m){
+        int times = op[i];
+        ans[l[i]-1] += d[i] * times;
+        ans[r[i]] -= d[i] * times;
+    }
+
+    rep(i,1,n) ans[i] += ans[i-1];
+
+    rep(i,0,n) cout << ans[i] + b[i] << " ";
+    cout << end;
 }
+
 
 void test(){
     int t;
@@ -41,8 +68,8 @@ void test(){
 
 int32_t main(){
     fast
-    test();
-    //solve();
+    //test();
+    solve();
     return 0;
 }
 
