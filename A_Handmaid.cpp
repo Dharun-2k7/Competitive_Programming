@@ -24,20 +24,12 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n;  cin >> n;
-    vi a(n+2), dp(n+2), h(n+2), suf(n+3);
-    rep(i,1,n+1) cin >> a[i];
-    revrep(i,n,1)
-        suf[i] = a[i] + suf[i+1];
-    dp[n] = 0;
-    h[n] = 0;
-    revrep(i,n-1,1){
-        dp[i] = max(a[i] + h[i+1], -suf[i+1]);
-        h[i] = max(dp[i], -a[i] + h[i+1]);
-    }
-
-    cout << dp[1] << nl;
+    string s; cin >> s;
+    s[0] = tolower(s[0]);
+    cout << "Of" << s << nl;
 }
+
+
 void test(){
     int t;
     cin >> t;
@@ -48,8 +40,8 @@ void test(){
 
 int32_t main(){
     fast
-    test();
-    //solve();
+    //test();
+    solve();
     return 0;
 }
 

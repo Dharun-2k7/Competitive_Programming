@@ -16,7 +16,7 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define nl "\n"
+#define end "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
@@ -24,20 +24,32 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n;  cin >> n;
-    vi a(n+2), dp(n+2), h(n+2), suf(n+3);
-    rep(i,1,n+1) cin >> a[i];
-    revrep(i,n,1)
-        suf[i] = a[i] + suf[i+1];
-    dp[n] = 0;
-    h[n] = 0;
-    revrep(i,n-1,1){
-        dp[i] = max(a[i] + h[i+1], -suf[i+1]);
-        h[i] = max(dp[i], -a[i] + h[i+1]);
+    int n; cin >>n;
+    vi a(n);
+    rep(i,0,n) cin >> a[i];
+    bool sorted=true;
+    bool rsorted=true;
+    rep(i,1,n){
+        if(a[i]!=a[i-1]+1) sorted=false;
+        if(a[i]!=a[i-1]-1) rsorted=false;
     }
+    if(sorted)cout<<n<<end;
+    else if(rsorted) cout << 1 <<end;
+    else{
+        map<int, int>mp;
+        int ans=0;
+        rep(i,0,n){
+            int x=a[i];
+            mp[x]=mp[x-1]+1;
+            if(mp[x]>ans){
+                ans=mp[x];
 
-    cout << dp[1] << nl;
+            }
+        }
+        cout <<ans<<end;
+    }
 }
+
 void test(){
     int t;
     cin >> t;
@@ -48,11 +60,23 @@ void test(){
 
 int32_t main(){
     fast
-    test();
-    //solve();
+    //test();
+    solve();
     return 0;
 }
+/*
+we can break down this problem in to 3 diff sections 
+  1) sorted
+  2) sorted but in reverse
+  3) random
 
+the ans for 1st case is always N , the ans for 2nd case is always 1 , 
+yeah coz if its completely sorted in rev order nothign can be we can never get a continous sequence
+
+wt mehtod can we flw to solve 3rd case so TLE doesnt occur 
+maybe we can use an map to store the max length of the sequence 
+
+*/
 /*
  ██████████   █████                                              
 ░░███░░░░███ ░░███                                               

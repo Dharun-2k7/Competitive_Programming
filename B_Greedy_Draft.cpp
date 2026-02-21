@@ -16,7 +16,7 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define nl "\n"
+#define end "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
@@ -24,20 +24,24 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n;  cin >> n;
-    vi a(n+2), dp(n+2), h(n+2), suf(n+3);
-    rep(i,1,n+1) cin >> a[i];
-    revrep(i,n,1)
-        suf[i] = a[i] + suf[i+1];
-    dp[n] = 0;
-    h[n] = 0;
-    revrep(i,n-1,1){
-        dp[i] = max(a[i] + h[i+1], -suf[i+1]);
-        h[i] = max(dp[i], -a[i] + h[i+1]);
+ int n,m; cin >>n>>m;
+ map<int,bool> mp;
+ rep(i,0,n){
+    int l ; cin >>l;
+    vi a(l);
+    rep(j,0,l) cin >>a[j];
+    int ans=0;
+    rep(j,0,l){
+        if(!mp[a[j]]){
+            ans=a[j];
+            mp[a[j]]=true;
+            break;
+        }
     }
-
-    cout << dp[1] << nl;
+    cout<<ans<<end;
+ }
 }
+
 void test(){
     int t;
     cin >> t;
@@ -48,8 +52,8 @@ void test(){
 
 int32_t main(){
     fast
-    test();
-    //solve();
+    //test();
+    solve();
     return 0;
 }
 

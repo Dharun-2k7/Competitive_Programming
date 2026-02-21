@@ -16,7 +16,7 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define nl "\n"
+#define end "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
@@ -24,20 +24,34 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n;  cin >> n;
-    vi a(n+2), dp(n+2), h(n+2), suf(n+3);
-    rep(i,1,n+1) cin >> a[i];
-    revrep(i,n,1)
-        suf[i] = a[i] + suf[i+1];
-    dp[n] = 0;
-    h[n] = 0;
-    revrep(i,n-1,1){
-        dp[i] = max(a[i] + h[i+1], -suf[i+1]);
-        h[i] = max(dp[i], -a[i] + h[i+1]);
-    }
+    int n,d; cin >>n>>d;
+    vi a(n),b(n);
+    rep(i,0,n) cin >>a[i];
+    rep(i,0,n) cin >>b[i];
+    queue<pii>q;
+    int tot=0;
 
-    cout << dp[1] << nl;
+    rep(i,0,n){
+        q.push({i,a[i]});
+        tot+=a[i];
+    int cons=b[i];
+    while(cons!=0){
+        auto &gt=q.front();
+        int tk= min(cons,gt.ss);
+        gt.ss-=tk;
+        cons-=tk;
+        tot-=tk;
+        if(gt.ss==0)q.pop();
+    }
+    while(!q.empty() && q.front().first<=i-d){
+        tot-=q.front().ss;
+        q.pop();
+    }
 }
+    cout<<tot<<end;
+}
+
+
 void test(){
     int t;
     cin >> t;
@@ -52,7 +66,17 @@ int32_t main(){
     //solve();
     return 0;
 }
+/*
+we need to store the num of eggs stored currently and should also take care they get discarded
+one the D Day comes , can we use  a queue to store the day and cnt of eggs
+stroed , tot can keep a track of eggs 
 
+for each morngn we can add smth to Q
+and tot gets increased by ai;
+
+and reduce the bi , we need to use the stock whcih was stored 1st , 
+
+*/
 /*
  ██████████   █████                                              
 ░░███░░░░███ ░░███                                               
