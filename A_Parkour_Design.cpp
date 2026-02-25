@@ -23,10 +23,13 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
-void solve() {
-    int n;  cin >> n;
-    string s;  cin >> s;
+void solve(){
+    int x,y; cin >>x>>y;
+    int d=(x-2*y)%3==0;
+    int l=(x>=2*y);
+    int u=(x>=-4*y);
 
+    cout<<(d&&l&&u?"YES":"NO")<<end;
 }
 
 void test(){
