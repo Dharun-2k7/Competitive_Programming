@@ -16,7 +16,7 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define end "\n"
+#define nl "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
@@ -25,8 +25,15 @@ int gcd(int a,int b){
 
 void solve(){
     int n; cin >>n;
-    string s; cin >>s;
-    
+    int k=1;
+    for(int i=2;i*i<=n;i++){
+        if(n%i==0){
+            k*=i;
+            while(n%i==0)n/=i;
+        } 
+    }
+    if(n>1) k*=n;
+    cout <<k<<nl;
 }
 
 void test(){

@@ -16,17 +16,39 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define end "\n"
+#define nl "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
 
+/*void solve(){
+    int n; cin >> n;
+    vi a(n);
+    rep(i,0,n) cin >>a[i];
+    int pos=-1;
+    rep(i,0,n){
+        if(a[i]==n){
+            pos=i;
+            break;
+        }
+    }
+    if(pos!=0) swap(a[0],a[pos]);
+
+    rep(i,0,n) cout <<a[i]<< " ";
+    cout <<nl;
+
+}*/
 void solve(){
     int n; cin >>n;
-    string s; cin >>s;
-    
+    vi a(n);
+    rep(i,0,n) cin >> a[i];
+    int pos=max_element(all(a))-a.begin();
+    if(pos!=0) swap(a[0],a[pos]);
+
+    rep(i,0,n) cout <<a[i]<< " ";
+    cout <<nl;
 }
 
 void test(){

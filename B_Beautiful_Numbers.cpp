@@ -13,10 +13,11 @@ using namespace std;
 #define ff first
 #define ss second
 #define all(v) v.begin(),v.end()
+#define rall(v) v.rbegin(),v.rend()
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define end "\n"
+#define nl "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
@@ -24,9 +25,25 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n; cin >>n;
     string s; cin >>s;
-    
+    vi a;
+    for(char c:s) a.pb(c-'0');
+    int n=a.size();
+    int ans=n;
+    sort(rall(a));
+    rep(i,1,10){
+        int sm=0;
+        int kp=0;
+        rep(j,0,n){
+            if(sm+a[j]<=i){
+                sm+=a[i];
+                kp++;
+            }
+        }
+        if(sm==i) ans=min(ans,n-kp);
+    }
+    cout<<ans<<nl;
+
 }
 
 void test(){

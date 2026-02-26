@@ -24,9 +24,10 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n; cin >>n;
-    string s; cin >>s;
-    
+    int n,m,d; cin>>n>>m>>d;
+    int mx=d/m+1;
+    int ans=(n+mx-1)/mx;
+    cout <<ans<<end;
 }
 
 void test(){
