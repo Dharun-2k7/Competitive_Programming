@@ -24,33 +24,10 @@ int gcd(int a,int b){
 }
 
 void solve(){
-
-
-
-
-
-
-    
+    int n , m; cin >>n>>m;
+    if(m<=(n+1)/2)cout <<"Yes";
+    else cout <<"No";
 }
-/*void solve(){
-    int n,x,y; cin >> n>>x>>y;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-
-    vi ot;
-    rep(i,0,x) ot.pb(a[i]);
-    rep(i,y,n) ot.pb(a[i]);
-
-    sort(all(ot));
-    vi ans(n);
-    rep(i,0,x) ans[i]=ot[i];
-    rep(i,x,y) ans[i]=a[i];
-    rep(i,y,n) ans[i]=ot[x+(i-y)];
-
-    for(int v:ans) cout <<v <<" ";
-    cout <<nl;
-    
-}*/
 
 void test(){
     int t;
@@ -60,28 +37,13 @@ void test(){
     }
 }
 
-
 int32_t main(){
     fast
-    test();
-    //solve();
+    //test();
+    solve();
     return 0;
 }
-/*
-[A | B | C] 
-     a==> [1...x]
-     b==> [x+1...y]
-     c===> [y+1 ...n]
 
-     we can do 2 operations , either take elemtn jst left to one portal and place in just right of other portal
-                               or we can take just ryt of one portal and place on just left pos of anothe rportal 
-
-                               the segment B is unchanged=> the one between 2 portals
-
-                               to make it lexicographically small we must place small elements in segment A 
-
-
-*/
 /*
  ██████████   █████                                              
 ░░███░░░░███ ░░███                                               
