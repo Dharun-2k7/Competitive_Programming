@@ -18,13 +18,33 @@ using namespace std;
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define nl "\n"
 
+const int MOD =7;
+
 int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
 
 void solve(){
-    
+    int n; cin >>n;
+    vi a(n);
+    rep(i,0,n)cin >> a[i];
+
+    vi first(7,-1);
+    int sum=0;
+    int ans=0;
+
+    first[0]=0;
+    rep(i,0,n){
+        sum+=a[i];
+        int r=sum%7;
+
+        if(first[r]==-1){
+            first[r]=i+1;
+        }
+        else ans=max(ans,i+1-first[r]);
+    }
+    cout<<ans;
 }
 
 void test(){
@@ -37,8 +57,8 @@ void test(){
 
 int32_t main(){
     fast
-    test();
-    //solve();
+    //test();
+    solve();
     return 0;
 }
 
