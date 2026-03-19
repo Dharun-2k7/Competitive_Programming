@@ -25,6 +25,7 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
+
 void solve(){
     int n; cin >>n;
     string s; cin >>s;
