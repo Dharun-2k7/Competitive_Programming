@@ -25,36 +25,21 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
-int q(int u, int v){
-    cout << "? " << u << " " << v << nl; 
-    int r; cin >> r;
-    if(r == -1) exit(0);
-    return r;
-}
-
 void solve(){
-    int n;  cin >> n;
-    if(q(1,2) == 1){
-        cout << "! 1" << nl;
-        return;
-    }
-    if(q(2,3) == 1){
-        cout << "! 2" << nl;
-        return;
-    }
-    if(q(1,3) == 1){
-        cout << "! 1" << nl;
-        return;
-    }
-    for(int i = 4; i < 2*n; i += 2){
-        if(q(i, i+1) == 1){
-            cout << "! " << i << nl;
-            return;
+    int n,c,k; cin >>n>>c>>k;
+    vi a(n);
+    rep(i,0,n) cin >> a[i];
+    sort(all(a));
+    rep(i,0,n){
+        if(a[i]<=c){ 
+            int use=c-a[i];
+            int used=min(k,use);
+            c+=(a[i]+used);
+            k-=used;
         }
     }
-    cout << "! " << 2*n << nl;
+    cout << c << nl;
 }
-
 
 void test(){
     int t;
