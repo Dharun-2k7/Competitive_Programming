@@ -34,6 +34,7 @@ void solve(){
      g=gcd(g,x);
    }
    int ans=0;
+   
    for(int i=1;i*i<=g;i++){
      if(g%i==0){
         ans++;
