@@ -1,12 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
+#define db double
 #define ull unsigned long long
 #define vi vector<int>
 #define vll vector<long long>
 #define vvi vector<vi>
 #define vvll vector<vll>
 #define pii pair<int,int>
+#define vpii vector<pair<int,int>>
 #define pll pair<long long,long long>
 #define pb push_back
 #define mp make_pair
@@ -16,7 +18,7 @@ using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define revrep(i,a,b) for(int i=a;i>=b;i--)
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define end "\n"
+#define nl "\n"
 
 int gcd(int a,int b){
     if(b==0) return a;
@@ -24,34 +26,25 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n,d; cin >>n>>d;
-    vi a(n),b(n);
-    rep(i,0,n) cin >>a[i];
-    rep(i,0,n) cin >>b[i];
-    queue<pii>q;
-    int tot=0;
+    int n; cin >> n;
+    vi a(n);
+    rep(i,0,n) cin >> a[i];
+
+    if(n == 1){
+        cout << 1 << nl;
+        return;
+    }
+
+    //if(n == 2){
+    //   cout << "2 2" << nl;
+    //    return;
+    //}
 
     rep(i,0,n){
-        q.push({i,a[i]});
-        tot+=a[i];
-    int cons=b[i];
-    while(cons!=0){
-        auto &gt=q.front();
-        int tk= min(cons,gt.ss);
-        gt.ss-=tk;
-        cons-=tk;
-        tot-=tk;
-        if(gt.ss==0)q.pop();
+        cout << 2 << " ";
     }
-    while(!q.empty() && q.front().first<=i-d){
-        tot-=q.front().ss;
-        q.pop();
-    }
+    cout << nl;
 }
-    cout<<tot<<end;
-}
-
-
 void test(){
     int t;
     cin >> t;
@@ -66,17 +59,7 @@ int32_t main(){
     //solve();
     return 0;
 }
-/*
-we need to store the num of eggs stored currently and should also take care they get discarded
-one the D Day comes , can we use  a queue to store the day and cnt of eggs
-stroed , tot can keep a track of eggs 
 
-for each morngn we can add smth to Q
-and tot gets increased by ai;
-
-and reduce the bi , we need to use the stock whcih was stored 1st , 
-
-*/
 /*
  ██████████   █████                                              
 ░░███░░░░███ ░░███                                               
