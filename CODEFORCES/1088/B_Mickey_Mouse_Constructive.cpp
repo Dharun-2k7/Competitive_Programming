@@ -26,6 +26,7 @@ int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
+
 int div(int n){
     int cnt = 0;
     for(int i = 1; i * i <= n; i++){
@@ -42,6 +43,7 @@ void solve(){
     int s = x - y;
     if(s == 0) cout << (1 % MOD) << nl;
     else  cout << (div(abs(s)) % MOD) << nl;
+    
     if(x >= y){
         rep(i,0,x) cout << 1 << " ";
         rep(i,0,y) cout << -1 << " ";
