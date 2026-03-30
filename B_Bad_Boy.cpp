@@ -26,12 +26,9 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >> a[i];
-    int res = a[0];
-    rep(i,1,n) res &= a[i];
-    cout << res << nl;
+    int n,m,i,j;
+    cin >>n>>m>>i>>j;
+    cout << 1 << " " << 1 << " " << n << " " << m << nl;
 }
 
 void test(){

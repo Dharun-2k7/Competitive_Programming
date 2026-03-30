@@ -25,13 +25,36 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
+int n,k;
+vi a(n);
+
+bool check(int x){
+    rep(i,0,n){
+        int ct=0;
+        for(int j = i, y = x; j < n; j++, y--) {
+			if(y <= a[j]) break;
+			if(j == n-1) ct += 1e9;
+			else ct += (y - a[j]);
+		}
+        if(ct<=k)return true;
+    }
+    return false;
+}
 void solve(){
-    int n; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >> a[i];
-    int res = a[0];
-    rep(i,1,n) res &= a[i];
-    cout << res << nl;
+    cin >>n>>k;
+    a.resize(n);
+    rep(i,0,n) cin >>a[i];
+    int l=*max_element(all(a));
+    int r=l+n, ans=l;
+    while(l<=r){
+        int mid=(l+r)/2;
+        if(check(mid)){
+            ans=max(ans,mid);
+            l=mid+1;
+        }
+        else r = mid-1;
+    }
+    cout <<ans<<nl;
 }
 
 void test(){
