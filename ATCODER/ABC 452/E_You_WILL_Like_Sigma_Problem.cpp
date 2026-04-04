@@ -20,6 +20,8 @@ using namespace std;
 #define fast ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define nl "\n"
 
+//verdict :TLE 
+
 int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
@@ -33,7 +35,6 @@ void solve(){
     rep(i,0,n) cin >> a[i];
     rep(j,0,m) cin >> b[j];
     int ans = 0;
-
     rep(i,0,n){
         rep(j,0,m){
             int val = (a[i] * b[j]) % MOD;
@@ -41,7 +42,6 @@ void solve(){
             ans = (ans + val) % MOD;
         }
     }
-
     cout << ans << nl;
 }
 
