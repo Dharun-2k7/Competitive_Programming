@@ -25,7 +25,7 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
-void solve(){
+/*void solve(){
     int n; cin >> n;
     vi a(n);
     rep(i,0,n) cin >> a[i];
@@ -38,6 +38,20 @@ void solve(){
     }
     reverse(all(a));
     rep(i,0,n) cout << a[i] << " ";
+    cout << nl;
+}
+*/
+void solve(){
+    int n; cin >> n;
+    vi a(n);
+    rep(i,0,n) cin >> a[i];
+    set<int> s(all(a));
+    if(s.size() != n){
+        cout << -1 << '\n';
+        return;
+    }
+    sort(all(a), greater<int>());
+    for(int x : a) cout << x << " ";
     cout << nl;
 }
 
