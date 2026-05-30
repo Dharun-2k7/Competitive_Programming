@@ -26,8 +26,7 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int n,x,s;
-    cin >> n >> x >> s;
+    int n,x,s;cin>>n>>x>>s;
     string u; cin >> u;
     int avail = 0;
     int ambi = 0;
