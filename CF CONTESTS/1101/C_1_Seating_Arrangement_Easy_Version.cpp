@@ -25,6 +25,53 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
+//C2 logic
+void solve(){
+    int n,x,s;cin>>n>>x>>s;
+    string u; cin >> u;
+    int avail = 0;
+    int ambi = 0;
+    int ans = 0;
+    for(char c : u){
+        if(c == 'I'){
+            if(x > 0){
+                x--;
+                avail += (s - 1);
+                ans++;
+            }
+        }
+        else if(c == 'E'){
+            if(avail > 0){
+                avail--;
+                ans++;
+            }
+            else if(ambi > 0 && x > 0){
+                ambi--;
+                x--;
+                avail += (s - 1);
+                ans++;
+            }
+
+        }
+        else{
+            if(avail > 0){
+                avail--;
+                ambi++;
+                ans++;
+            }
+            else if(x > 0){
+                x--;
+                avail += (s - 1);
+                ans++;
+            }
+        }
+    }
+    cout << ans << nl;
+}
+
+
+/*
+XD , DP was an overkill , greedy solution would have been even easier :>
 void solve(){
     int n,x,s;cin>>n>>x>>s;
     string u; cin >> u;
@@ -50,6 +97,8 @@ void solve(){
     rep(j,0,x + 1) ans = max(ans, dp[j]);
     cout << ans << nl;
 }
+*/
+
 void test(){
     int t;
     cin >> t;
