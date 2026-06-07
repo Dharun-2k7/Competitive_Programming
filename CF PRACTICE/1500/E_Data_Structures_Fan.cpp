@@ -26,10 +26,41 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    int n; cin >> n;
+    vi a(n + 1);
+    rep(i,1,n+1) cin >> a[i];
+    string s; cin >> s;
+    s = " " + s;
+
+    int x0 = 0;
+    int x1 = 0;
+    rep(i,1,n+1){
+        if(s[i] == '0') x0 ^= a[i];
+        else x1 ^= a[i];
+    }
+
+    vi p(n + 1);
+    rep(i,1,n+1) p[i] = p[i-1] ^ a[i];
+
+    int q;cin >> q;
+    while(q--){
+        int tt; cin >> tt;
+        if(tt == 1){
+            int l,r;
+            cin >> l >> r;
+            int xr = p[r] ^ p[l-1];
+            x0 ^= xr;
+            x1 ^= xr;
+        }
+
+        else{
+            int g; cin >> g;
+            if(g == 0) cout << x0 << " ";
+            else cout << x1 << " ";
+            
+        }
+    }
+    cout << nl;
 }
 
 void test(){
@@ -42,8 +73,8 @@ void test(){
 
 int32_t main(){
     fast
-    //test();
-    solve();
+    test();
+    //solve();
     return 0;
 }
 

@@ -26,10 +26,13 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    int n; cin >> n;
+    vi a(n), b(n);
+    rep(i,0,n) cin >> a[i];
+    rep(i,0,n) cin >> b[i];
+    bool ok = (a[n-1] == b[n-1]);
+    rep(i,0,n-1)if(a[i] != b[i] && a[i] != (b[i] ^ b[i+1]) && a[i] != (b[i] ^ a[i+1])) ok = false;
+    cout << (ok ? "YES" : "NO") << nl;
 }
 
 void test(){
@@ -42,11 +45,43 @@ void test(){
 
 int32_t main(){
     fast
-    //test();
-    solve();
+    test();
+    //solve();
     return 0;
 }
 
+
+/*
+
+        1 -> 2 <- 3 -> 4 <- 5
+ 
+        Does, this fix b ?
+ 
+        1, 2, 3, .. n
+ 
+        for some i, 
+            before it goes to i - 1,
+ 
+            is it getting updated or not 
+ 
+        for i, i - 1 ok ? 
+            if 
+                i came before i - 1
+ 
+                then i wont be updated from here right ? 
+                    and it will be bi, if theres a way
+                
+                if i - 1 never came then ai-1 = bi-1
+                else
+                    ai-1 ^ bi = bi-1
+ 
+                ai-1 becomes bi-1
+ 
+                i - 1 came before i
+ 
+                    then ai-1 ^ ai = bi-1
+ 
+ */
 /*
  ██████████   █████                                              
 ░░███░░░░███ ░░███                                               

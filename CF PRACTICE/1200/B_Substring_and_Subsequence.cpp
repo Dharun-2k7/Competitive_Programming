@@ -26,10 +26,15 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    string a, b; cin >> a >> b;
+    int n = a.size(), m = b.size();
+    int ans = n + m;
+    rep(i,0,m) {
+      int j = i;
+      for (char c : a) if (j < m && c == b[j]) j++;
+      ans = min(ans, n + m - (j - i));
+    }
+    cout << ans << nl;
 }
 
 void test(){
@@ -40,13 +45,22 @@ void test(){
     }
 }
 
+
 int32_t main(){
     fast
-    //test();
-    solve();
+    test();
+    //solve();
     return 0;
 }
 
+
+/*
+its always good to add /remove b to a as we need A to be the substring 
+ok so its not just adding a single letter from B we need to use entire B and A
+our minmum possible ans is size of a 
+ans is size of a if b is substring of a?
+ 
+*/
 /*
  ██████████   █████                                              
 ░░███░░░░███ ░░███                                               

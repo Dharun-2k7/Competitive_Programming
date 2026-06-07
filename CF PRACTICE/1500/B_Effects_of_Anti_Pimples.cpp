@@ -25,13 +25,51 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
-void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
-}
+const int mod = 998244353;
 
+void solve(){
+    int n; cin >> n;
+    vi a(n+1);
+    rep(i,1,n+1) cin >> a[i];
+    vi p(n+1);
+    p[0] = 1;
+
+    rep(i,1,n+1) p[i] = (p[i-1] * 2) % mod;
+    
+
+    vector<pii> v;
+    rep(i,1,n+1)v.push_back({a[i],i});
+    
+
+    sort(v.rbegin(),v.rend());
+    vi u(n+1,0);
+    int b = 0;
+    int ans = 0;
+
+    for(auto [x,id] : v){
+        vi d;
+        for(int i=1;i*i<=id;i++){
+            if(id%i==0){
+                d.push_back(i);
+                if(i*i!=id){
+                    d.push_back(id/i);
+                }
+            }
+        }
+        int add = 0;
+        for(auto z : d){
+            if(!u[z]){
+                u[z] = 1;
+                add++;
+            }
+        }
+        b += add;
+        int ways =(p[n-b+add]-p[n-b]+mod)%mod;
+        ans = (ans + x*ways)%mod;
+    }
+
+    cout << ans << nl;
+}
 void test(){
     int t;
     cin >> t;

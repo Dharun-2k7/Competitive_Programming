@@ -26,10 +26,27 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    int n; cin >> n;
+    vector<pair<string,int>> v;
+    map<string,int> f, c;
+    rep(i,0,n){
+        string s; cin >>s;
+        int x; cin >> x;
+        v.pb({s,x});
+        f[s] += x;
+    }
+
+    int mx = LLONG_MIN;
+    for(auto p : f) mx = max(mx, p.ss);
+    for(auto p : v){
+        string s = p.ff;
+        int x = p.ss;
+        c[s] += x;
+        if(c[s] >= mx && f[s] == mx){
+            cout << s << nl;
+            return;
+        }
+    }
 }
 
 void test(){

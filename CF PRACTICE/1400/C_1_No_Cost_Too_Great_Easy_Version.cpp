@@ -24,12 +24,53 @@ int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
+const int N = 2e5 + 10;
+
+vvi pf(N);
+
+void sieve(){
+    rep(i,2,N){
+        if(pf[i].empty()){
+            for(int j=i;j<N;j+=i){
+                pf[j].pb(i);
+            }
+        }
+    }
+}
 
 void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    int n;cin >> n;
+    vi a(n), b(n);
+    rep(i,0,n) cin >> a[i];
+    rep(i,0,n) cin >> b[i];
+
+    int ans = 2;
+    vi cnt(N,0);
+    rep(i,0,n){
+        for(int x : pf[a[i]]){
+            if(cnt[x] > 0){
+                ans = 0;
+            }
+            cnt[x]++;
+        }
+    }
+    if(ans > 0){
+        rep(i,0,n){
+            for(int x : pf[a[i]]){
+                cnt[x]--;
+            }
+            for(int x : pf[a[i] + 1]){
+                if(cnt[x] > 0){
+                    ans = min(ans,1LL);
+                }
+            }
+
+            for(int x : pf[a[i]]){
+                cnt[x]++;
+            }
+        }
+    }
+    cout << ans << nl;
 }
 
 void test(){
@@ -42,8 +83,9 @@ void test(){
 
 int32_t main(){
     fast
-    //test();
-    solve();
+    sieve();
+    test();
+    //solve();
     return 0;
 }
 

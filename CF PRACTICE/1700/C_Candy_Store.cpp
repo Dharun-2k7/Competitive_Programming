@@ -26,10 +26,31 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    int n; cin >> n;
+    vi a(n), b(n);
+    rep(i,0,n) cin >> a[i] >> b[i];
+    int ans = 0;
+    int req = a[0] * b[0];
+    int req2 = b[0];
+    int h = 0;
+    rep(i,1,n){
+        if(((a[i] * b[i]) % req2 == 0) && (req % b[i] == 0))
+        {
+            //req2 = (b[i-1] * b[i]) / gcd(b[i-1], b[i]);
+            //req = gcd(a[i-1] * b[i-1], a[i] * b[i]);
+            req2=(b[i]*req2)/(gcd(b[i],req2));
+            req=gcd(req,a[i]*b[i]);
+            h = 1;
+            ans++;
+        }
+        else{
+            h = 0;
+            req = a[i] * b[i];
+            req2 = b[i];
+        }
+    }
+
+    cout << n - ans << nl;
 }
 
 void test(){
@@ -42,8 +63,8 @@ void test(){
 
 int32_t main(){
     fast
-    //test();
-    solve();
+    test();
+    //solve();
     return 0;
 }
 

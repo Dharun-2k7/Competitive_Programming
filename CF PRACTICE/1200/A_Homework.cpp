@@ -26,10 +26,41 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    string s;cin >> s;
+    int k;cin >> k;
+    int n = s.size();
+    if(k >= n){
+        cout << 0 << nl << nl;
+        return;
+    }
+
+    vi freq(26,0);
+    for(char c : s) freq[c-'a']++;
+    vpii v;
+    rep(i,0,26){
+        if(freq[i])
+            v.pb({freq[i],i});
+    }
+    sort(all(v));
+    vi removed(26,0);
+    for(auto it : v){
+        int f = it.ff;
+        int ch = it.ss;
+        if(k >= f){
+            k -= f;
+            removed[ch] = 1;
+        }
+        else
+            break;
+    }
+    string ans = "";
+    for(char c : s){
+        if(!removed[c-'a'])
+            ans += c;
+    }
+    set<char> st(all(ans));
+    cout << st.size() << nl;
+    cout << ans << nl;
 }
 
 void test(){

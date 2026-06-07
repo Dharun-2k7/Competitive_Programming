@@ -26,10 +26,42 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int  n ; cin >> n;
+    int n ; cin >>n;
     vi a(n);
     rep(i,0,n) cin >>a[i];
     
+    int ans=0;
+    vpii hv;
+
+    rep(i,0,n){
+        int x= a[i];
+        int cur=0;
+        bool to = false , oe= false;
+
+        while(true){
+            if(x==1 && oe) break;
+            if(x==2 && to ) break;
+            if(x==2) to = true;
+            if(x==1) oe= true;
+            hv.pb({x,cur});
+            if(x%2==0)x/=2;
+            else x++;
+            cur ++;       
+        }
+    }
+    sort(all(hv));
+    int mn =  INT_MAX;
+    rep(i,0,hv.size()){
+        int ind =i;
+        int sum=0;
+        while(ind<hv.size()&&hv[ind].ff==hv[i].ff){
+            sum+=hv[ind].ss;
+            ind++;
+        }
+        if(ind-i==n)mn=min(mn,sum);
+        i=ind-1;
+    }
+    cout<<mn<<nl;
 }
 
 void test(){
@@ -42,10 +74,12 @@ void test(){
 
 int32_t main(){
     fast
-    //test();
-    solve();
+    test();
+    //solve();
     return 0;
 }
+
+
 
 /*
  ██████████   █████                                              

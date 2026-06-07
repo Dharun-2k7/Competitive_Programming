@@ -26,10 +26,21 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    int n; cin >> n;
+    vpii v(n);
+    rep(i,0,n) cin >> v[i].ff >> v[i].ss;
+
+    sort(all(v), [](const pii &a, const pii &b){
+        int mna = min(a.ff, a.ss);
+        int mnb = min(b.ff, b.ss);
+        if(mna != mnb) return mna < mnb;
+        int mxa = max(a.ff, a.ss);
+        int mxb = max(b.ff, b.ss);
+        return mxa < mxb;
+    });
+
+    for(auto x : v)cout << x.ff << " " << x.ss << " ";
+    cout << nl;
 }
 
 void test(){
@@ -42,8 +53,8 @@ void test(){
 
 int32_t main(){
     fast
-    //test();
-    solve();
+    test();
+    //solve();
     return 0;
 }
 

@@ -25,13 +25,32 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
-void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
-}
 
+void solve(){
+    int d,s;cin >> d >> s;
+    vi mn(d), mx(d), a(d);
+    int l = 0, r = 0;
+    rep(i,0,d){
+        cin >> mn[i] >> mx[i];
+        l += mn[i];
+        r += mx[i];
+    }
+    if(s < l || s > r){
+        cout << "NO\n";
+        return;
+    }
+    
+    cout << "YES"<<nl;
+    a = mn;
+    int e = s - l;
+    rep(i,0,d){
+        int x = min(e, mx[i] - mn[i]);
+        a[i] += x;
+        e -= x;
+    }
+    for(auto x : a) cout << x << " ";
+    cout << nl;
+}
 void test(){
     int t;
     cin >> t;

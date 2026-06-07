@@ -26,10 +26,17 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int  n ; cin >> n;
+    int n; cin >>n;
     vi a(n);
     rep(i,0,n) cin >>a[i];
-    
+    int pref = 0, s = 0, mx = 0;
+    rep (i,0,n) {
+        pref = max(pref,  a[i]);
+        int d = pref - a[i];
+        s += d;
+        mx = max(mx, d);
+    }
+    cout << s + mx << nl;
 }
 
 void test(){
@@ -42,8 +49,8 @@ void test(){
 
 int32_t main(){
     fast
-    //test();
-    solve();
+    test();
+    //solve();
     return 0;
 }
 

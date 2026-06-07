@@ -25,11 +25,17 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
+int lcm(int n ){
+    int a=n;
+    int b=n-1;
+    int c=n-2;
+    return ((a / gcd(a, b)) * b / gcd((a / gcd(a, b)) * b, c)) * c;
+
+}
+
 void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    int n;cin >>n;
+    cout << (n<2?1:(n==2?2:(n==3?6:lcm(n))))<<nl;
 }
 
 void test(){

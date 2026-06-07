@@ -26,10 +26,28 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
+    int n; cin >>n;
+    vi c(n);
+    rep(i,0,n) cin >>c[i];
+    int k; cin >>k;
     
+    vi suf(n);
+    suf[n-1]=c[n-1];
+    revrep(i,n-2,0) suf[i]=min(suf[i+1],c[i]);
+
+    vi ans(n);
+    ans[0]=k/suf[0];
+    int rem=k%suf[0];
+
+    cout<<ans[0];
+    rep(i,1,n){
+        int x=suf[i]-suf[i-1];
+        ans[i]=min(ans[i-1],(x?rem/x:LLONG_MAX));
+        rem -= x * ans[i];
+
+        cout<<' '<<ans[i];
+    }
+    cout<<nl;
 }
 
 void test(){
@@ -42,8 +60,8 @@ void test(){
 
 int32_t main(){
     fast
-    //test();
-    solve();
+    test();
+    //solve();
     return 0;
 }
 

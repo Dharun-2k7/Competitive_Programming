@@ -26,10 +26,28 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int  n ; cin >> n;
+    int n, k; 
+    cin >> n >> k;
     vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    for(auto &i : a) cin >> i;
+    vi p(k);
+    for(auto &i : p) cin >> i;
+    int val1 = a[p[0]-1];
+    int val2 = val1;
+    int ct1 = 0, ct2 = 0;
+    rep(i, 0, p[0]){
+        if(a[i] != val1){
+            ct1++;
+            val1 ^= 1;
+        }
+    }
+    revrep(i, n-1, p[0]-1){
+        if(a[i] != val2){
+            ct2++;
+            val2 ^= 1;
+        }
+    }
+    cout << max(ct1, ct2) << nl;
 }
 
 void test(){
@@ -42,8 +60,8 @@ void test(){
 
 int32_t main(){
     fast
-    //test();
-    solve();
+    test();
+    //solve();
     return 0;
 }
 

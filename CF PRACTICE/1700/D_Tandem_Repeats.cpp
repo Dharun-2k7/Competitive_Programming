@@ -26,10 +26,24 @@ int gcd(int a,int b){
 }
 
 void solve(){
-    int  n ; cin >> n;
-    vi a(n);
-    rep(i,0,n) cin >>a[i];
-    
+    string s;cin >>s;
+    int n= s.size();
+    int ans =0;
+    rep(d,0,n/2+1){
+        int cnt=0;
+        rep(i,0,d){
+            if(s[i]=='?'||s[i+d]=='?'||s[i] == s[i + d]) cnt++;
+        }
+        if(cnt==d)ans=max(ans,d);
+
+        rep(j,0,n-2*d){
+            if (s[j] == '?' || s[j + d] == '?' || s[j] == s[j + d]) cnt--;
+            if (s[j + d] == '?' || s[j + 2 * d] == '?' || s[j + d] == s[j + 2 * d]) cnt++;
+			if (cnt == d) ans = max(ans, d);
+
+        }
+    }
+    cout<<ans*2<<nl;
 }
 
 void test(){
@@ -42,8 +56,8 @@ void test(){
 
 int32_t main(){
     fast
-    //test();
-    solve();
+    test();
+    //solve();
     return 0;
 }
 
