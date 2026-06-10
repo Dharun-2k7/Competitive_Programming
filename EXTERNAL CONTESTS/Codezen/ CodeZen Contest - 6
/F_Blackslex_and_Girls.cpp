@@ -25,30 +25,37 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
+int lcm (int a, int b) {
+return a / gcd(a, b) * b;
+}
+
 void solve(){
-    int n;cin >> n;
-    int s = 0,tot = 0,cap = 0,m = 0, lt= 0;
+    int n,x,y; cin >>n>>x>>y;
+    string s; cin >> s;
+    int a = 0, b = 0;
+    int z = 0, o = 0;
     rep(i,0,n){
-        int x;cin >> x;
-        if(x == 1) s++;
+        int p; cin >> p;
+        if(s[i] == '0'){
+            z++;
+            a += (p + 1) / 2;
+            b += p / 2;
+        }
         else{
-            m++;
-            tot += x;
-            cap += (x - 2) / 2;
-            lt= x;
+            o++;
+            a += p / 2;
+            b += (p + 1) / 2;
         }
     }
-    if(m == 0) cout << 0 << nl;
-    else if(m == 1){
-        int ans = lt+ min(s, lt/ 2);
-        if(ans < 3) ans = 0;
-        cout << ans << nl;
+    if(x < a || y < b){
+        cout << "NO" << nl;
+        return;
     }
-    else{
-        int ans = tot + min(s, cap);
-        cout << ans << nl;
-    }
+    int ea = x - a;
+    int eb = y - b;
+    cout << (ea + o >= eb && eb + z >= ea ? "YES" : "NO") << nl;
 }
+
 void test(){
     int t;
     cin >> t;
@@ -63,26 +70,7 @@ int32_t main(){
     //solve();
     return 0;
 }
-/*
 
-   in every triple of consecutive cards, there are at least two equal cards. 
-
-      1 1 0 0 2 2 
-
-      i think we must never take a single card as we wont be able to make 2 eq cards , maybe we can sneak in it between two equal sides 
-           1 1 0 1 1 
-
-      should we only take cards in pairs if the size is more then 6? 
-
-         so any triple with all 3 being diff is wrong 
-          
-         so , any card with count more than 2 is safe to pick
-
-    we can pick every card with more than 2 cards 
-     and then greedily fill single elements in middle
-
-
-*/
 /*
  ██████████   █████                                              
 ░░███░░░░███ ░░███                                               

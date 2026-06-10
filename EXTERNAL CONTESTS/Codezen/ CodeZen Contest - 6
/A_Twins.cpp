@@ -25,52 +25,29 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
-
-void solve(){
-    int n;cin>>n;
-    vi a(n + 1), b(n + 1);
-    rep(i,1,n + 1) cin >> a[i];
-    rep(i,1,n + 1) cin >> b[i];
-    vi na(n + 2, n + 1);
-    vi nb(n + 2, n + 1);
-    vi dp(n + 2, 0);
-    int ans = 0;
-    revrep(i,n,1){
-        if(a[i] == b[i]){
-            int pa = na[a[i] + 1];
-            int pb = nb[a[i] + 1];
-            if(pa == pb){
-                if(pa == n + 1) dp[i] = n;
-                else dp[i] = dp[pa];
-            }
-            else{
-                dp[i] = min(pa,pb) - 1;
-            }
-        }
-        na[a[i]] = i;
-        nb[b[i]] = i;
-        int pa = na[1];
-        int pb = nb[1];
-        int r = 0;
-        if(pa == pb){
-            if(pa == n + 1){
-                r = n;
-            }
-            else{
-                r = dp[pa];
-            }
-        }
-        else{
-            r = min(pa,pb) - 1;
-        }
-        if(r >= i){
-            ans += (r - i + 1);
-        }
-    }
-    cout << ans << nl;
+int lcm (int a, int b) {
+return a / gcd(a, b) * b;
 }
 
-
+void solve(){
+    int n; cin >> n;
+    vi a(n);
+    int tot = 0;
+    rep(i,0,n){
+        cin >> a[i];
+        tot += a[i];
+    }
+    sort(all(a), greater<int>());
+    int sum = 0, cnt = 0;
+    rep(i,0,n){
+        sum += a[i];
+        cnt++;
+        if(sum > tot - sum){
+            cout << cnt << nl;
+            return;
+        }
+    }
+}
 
 void test(){
     int t;
@@ -82,16 +59,11 @@ void test(){
 
 int32_t main(){
     fast
-    test();
-    //solve();
+    //test();
+    solve();
     return 0;
 }
-/*
-obs: 
-   on any day, they must either watch the same episode or nothing at all
 
-
-*/
 /*
  ██████████   █████                                              
 ░░███░░░░███ ░░███                                               

@@ -25,20 +25,39 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
+int lcm (int a, int b) {
+return a / gcd(a, b) * b;
+}
+
 void solve(){
-    int n;cin>>n;
-    string a,b; cin >>a>>b;
-    vi dp(n+1,1e18);
-    dp[0]=0;
-    rep(i,1,n+1){
-        int v = (a[i-1] == b[i-1] ? 0 : 1);
-        dp[i] = min(dp[i], dp[i-1] + v);
-        if(i >= 2){
-            int h = (a[i-2] == a[i-1] ? 0 : 1) + (b[i-2] == b[i-1] ? 0 : 1);
-            dp[i] = min(dp[i], dp[i-2] + h);
+    int n;cin >> n;
+    vi a(n);
+    rep(i,0,n) cin >> a[i];
+    int l = 0, r = n - 1;
+    int mn = 1, mx = n;
+    while(l < r){
+        if(a[l] == mn){
+            l++;
+            mn++;
+        }
+        else if(a[l] == mx){
+            l++;
+            mx--;
+        }
+        else if(a[r] == mn){
+            r--;
+            mn++;
+        }
+        else if(a[r] == mx){
+            r--;
+            mx--;
+        }
+        else{
+            cout << l + 1 << " " << r + 1 << nl;
+            return;
         }
     }
-    cout << dp[n] << nl;
+    cout << -1 << nl;
 }
 
 void test(){

@@ -25,11 +25,25 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 
-void solve(){
-    int n,a,b;cin >>n>>a>>b;
-    cout << min(n*a, (n/3)*b + min(b, (n%3)*a))<<nl;
+int lcm (int a, int b) {
+return a / gcd(a, b) * b;
 }
 
+void solve(){
+    int n, m, k;cin >>n>>m>>k;
+    if(k < n){
+        cout << k + 1 << " " << 1 << nl;
+        return;
+    }
+    k -= n;   
+    int q=k/(m-1);
+    int p=k%(m-1);
+    int r=n-q;
+    int c;
+    if(q % 2 == 0) c = 2 + p;
+    else c = m - p;
+    cout << r << " " << c << nl;
+}
 void test(){
     int t;
     cin >> t;
@@ -40,8 +54,8 @@ void test(){
 
 int32_t main(){
     fast
-    test();
-    //solve();
+    //test();
+    solve();
     return 0;
 }
 
