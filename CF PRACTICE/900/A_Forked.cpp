@@ -38,7 +38,7 @@ void solve(){
         q.insert({xq + dx, yq + dy});
     }
     int ans = 0;
-    for(auto it : q) if(q.count(it)) ans++;
+    for(auto it : q) if(k.count(it)) ans++;
     cout << ans << nl;
 }
 
