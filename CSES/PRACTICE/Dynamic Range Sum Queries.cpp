@@ -35,7 +35,6 @@ struct Fenwick {
 int32_t main() {
     
     int n,q;cin>>n>>q;
-
     vector<int> a(n + 1);
     Fenwick fw(n);
 
